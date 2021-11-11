@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<Bionicle.Jump>Jump</Bionicle.Jump>
+	<Bionicle.JumpDesc>PLACEHOLDER</Bionicle.JumpDesc>
+
+	<Bionicle.Invisibility>Invisibility</Bionicle.Invisibility>
+	<Bionicle.InvisibilityDesc>PLACEHOLDER</Bionicle.InvisibilityDesc>
+	
+	<Bionicle.CreateClone>Create decoy</Bionicle.CreateClone>
+	<Bionicle.CreateCloneDesc>PLACEHOLDER</Bionicle.CreateCloneDesc>
+
+	<Bionicle.DownPawn>Down pawn</Bionicle.DownPawn>
+	<Bionicle.DownPawnDesc>PLACEHOLDER</Bionicle.DownPawnDesc>
+
+	<Bionicle.ChangeMentalState>Change mental state</Bionicle.ChangeMentalState>
+	<Bionicle.ChangeMentalStateDesc>PLACEHOLDER</Bionicle.ChangeMentalStateDesc>
+	
+	<Bionicle.StunPawn>Stun pawn</Bionicle.StunPawn>
+	<Bionicle.StunPawnDesc>PLACEHOLDER</Bionicle.StunPawnDesc>
+
+	<Bionicle.DisarmPawn>Disarm pawn</Bionicle.DisarmPawn>
+	<Bionicle.DisarmPawnDesc>PLACEHOLDER</Bionicle.DisarmPawnDesc>
+
+	<Bionicle.WallRaise>Wall raise</Bionicle.WallRaise>
+	<Bionicle.WallRaiseDesc>PLACEHOLDER</Bionicle.WallRaiseDesc>
+	
+	<Bionicle.Teleport>Teleport</Bionicle.Teleport>
+	<Bionicle.TeleportDesc>PLACEHOLDER</Bionicle.TeleportDesc>
+</LanguageData>

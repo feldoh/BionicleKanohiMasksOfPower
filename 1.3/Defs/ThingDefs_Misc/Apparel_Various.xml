@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="BKMOP_ApparelBionicleMaskBase" ParentName="ArmorHelmetMakeableBase" Abstract="True">
+    <techLevel>Spacer</techLevel>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.9, 0.9)</drawSize>
+    </graphicData>
+    <tradeTags>
+      <li>HiTechArmor</li>
+    </tradeTags>
+    <generateCommonality>2</generateCommonality>
+    <statBases>
+      <WorkToMake>26250</WorkToMake>
+      <MaxHitPoints>180</MaxHitPoints>
+      <Mass>2</Mass>
+      <Flammability>0.4</Flammability>
+      <ArmorRating_Sharp>1.2</ArmorRating_Sharp>
+      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+      <ArmorRating_Heat>0.6</ArmorRating_Heat>
+      <Insulation_Cold>4</Insulation_Cold>
+      <Insulation_Heat>2</Insulation_Heat>
+      <EquipDelay>6</EquipDelay>
+    </statBases>
+    <costList>
+      <ComponentSpacer>1</ComponentSpacer>
+      <Plasteel>50</Plasteel>
+    </costList>
+    <relicChance>3</relicChance>
+    <apparel>
+      <bodyPartGroups>
+        <li>FullHead</li>
+      </bodyPartGroups>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/CataphractArmorHelmet/CataphractHelmet</wornGraphicPath>
+      <layers>
+        <li>Overhead</li>
+      </layers>
+      <defaultOutfitTags>
+        <li>Soldier</li>
+      </defaultOutfitTags>
+      <useDeflectMetalEffect>true</useDeflectMetalEffect>
+    </apparel>
+    <comps>
+      <li Class="CompProperties_Biocodable"/>
+	  <li Class="BionicleKanohiMasksOfPower.CompProperties_Swappable">
+		<swapGroupKey>BionicleMask</swapGroupKey>
+	  </li>
+    </comps>
+    <thingSetMakerTags>
+      <li>RewardStandardHighFreq</li>
+    </thingSetMakerTags>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Hau</defName>
+    <label>Hau (mask of shielding)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_HauMask</thingClass>
+	<tickerType>Normal</tickerType>
+    <statBases>
+      <EnergyShieldRechargeRate>0.13</EnergyShieldRechargeRate>
+      <EnergyShieldEnergyMax>1</EnergyShieldEnergyMax>
+    </statBases>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Kaukau</defName>
+    <label>Kaukau (mask of waterbreathing)</label>
+    <description>PLACEHOLDER.</description>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Kaukau/Kaukau</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Kaukau/Kaukau</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Miru</defName>
+    <label>Miru (mask of levitation)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Miru</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Kakama</defName>
+    <label>Kakama (mask of speed)</label>
+    <description>PLACEHOLDER.</description>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Kakama/Kakama</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Kakama/Kakama</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Pakari</defName>
+    <label>Pakari (mask of strength)</label>
+    <description>PLACEHOLDER.</description>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Pakari/Pakari</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Pakari/Pakari</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Akaku</defName>
+    <label>Akaku (mask of xray vision)</label>
+    <description>PLACEHOLDER.</description>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Akaku/Akaku</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Akaku/Akaku</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+	<HediffDef>
+		<defName>BKMOP_Invisibility</defName>
+		<label>invisibility</label>
+		<description>invisibility</description>
+		<isBad>false</isBad>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties">
+				<compClass>HediffComp_Invisibility</compClass>
+			</li>
+			<li Class="HediffCompProperties_Disappears">
+				<compClass>HediffComp_Disappears</compClass>
+				<disappearsAfterTicks>1800</disappearsAfterTicks>
+				<showRemainingTime>true</showRemainingTime>
+			</li>
+			<li Class="HediffCompProperties_DisappearsOnDeath"/>
+		</comps>
+	</HediffDef>
+	
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Huna</defName>
+    <label>Huna (mask of concealment)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Huna</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Huna/Huna</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Huna/Huna</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Rau</defName>
+    <label>Rau (mask of translation)</label>
+    <description>PLACEHOLDER.</description>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Rau/Rau</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Rau/Rau</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+
+	<HediffDef>
+		<defName>BKMOP_PawnDuplicate</defName>
+		<label>duplicate</label>
+		<description>duplicate</description>
+		<isBad>false</isBad>
+		<hediffClass>BionicleKanohiMasksOfPower.Hediff_Duplicate</hediffClass>
+	</HediffDef>
+	
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Mahiki</defName>
+    <label>Mahiki (mask of illusion)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Mahiki</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Mahiki/Mahiki</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Mahiki/Mahiki</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+
+	<HediffDef>
+		<defName>BKMOP_MakeDown</defName>
+		<label>downed</label>
+		<description>downed</description>
+		<isBad>false</isBad>
+		<hediffClass>HediffWithComps</hediffClass>
+		<comps>
+			<li Class="HediffCompProperties_Disappears">
+				<compClass>HediffComp_Disappears</compClass>
+				<disappearsAfterTicks>1200</disappearsAfterTicks>
+			</li>
+			<li Class="HediffCompProperties_DisappearsOnDeath"/>
+		</comps>
+		<stages>
+			<li>
+				<capMods>
+					<li>
+						<capacity>Consciousness</capacity>
+						<setMax>0.1</setMax>
+					</li>
+				</capMods>
+			</li>
+		</stages>
+	</HediffDef>
+	
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Komau</defName>
+    <label>Komau (mask of mind control)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Komau</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Komau/Komau</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Komau/Komau</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Ruru</defName>
+    <label>Ruru (mask of night vision)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Ruru</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Ruru/Ruru</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Ruru/Ruru</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Matatu</defName>
+    <label>Matatu (mask of telekinesis)</label>
+    <description>PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Matatu</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+</Defs>
