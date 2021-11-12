@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-	<Bionicle.Jump>Jump</Bionicle.Jump>
-	<Bionicle.JumpDesc>PLACEHOLDER</Bionicle.JumpDesc>
+	<Bionicle.Jump>Leap</Bionicle.Jump>
+	<Bionicle.JumpDesc>Leap to a targetted location (10 second cooldown)</Bionicle.JumpDesc>
 
 	<Bionicle.Invisibility>Invisibility</Bionicle.Invisibility>
-	<Bionicle.InvisibilityDesc>PLACEHOLDER</Bionicle.InvisibilityDesc>
+	<Bionicle.InvisibilityDesc>Become invisible for 30 seconds</Bionicle.InvisibilityDesc>
 	
 	<Bionicle.CreateClone>Create decoy</Bionicle.CreateClone>
-	<Bionicle.CreateCloneDesc>PLACEHOLDER</Bionicle.CreateCloneDesc>
+	<Bionicle.CreateCloneDesc>Creates a hologram clone for 10 seconds(15 second cooldown)</Bionicle.CreateCloneDesc>
 
 	<Bionicle.DownPawn>Down pawn</Bionicle.DownPawn>
-	<Bionicle.DownPawnDesc>PLACEHOLDER</Bionicle.DownPawnDesc>
+	<Bionicle.DownPawnDesc>Forces a pawn down, lasts for 20 seconds (30 second cooldown)</Bionicle.DownPawnDesc>
 
 	<Bionicle.ChangeMentalState>Change mental state</Bionicle.ChangeMentalState>
-	<Bionicle.ChangeMentalStateDesc>PLACEHOLDER</Bionicle.ChangeMentalStateDesc>
+	<Bionicle.ChangeMentalStateDesc>Make a pawn go berserk or calm down (30 second cooldown)</Bionicle.ChangeMentalStateDesc>
 	
 	<Bionicle.StunPawn>Stun pawn</Bionicle.StunPawn>
-	<Bionicle.StunPawnDesc>PLACEHOLDER</Bionicle.StunPawnDesc>
+	<Bionicle.StunPawnDesc>Stuns pawn for 5 seconds (10 second cooldown)</Bionicle.StunPawnDesc>
 
 	<Bionicle.DisarmPawn>Disarm pawn</Bionicle.DisarmPawn>
-	<Bionicle.DisarmPawnDesc>PLACEHOLDER</Bionicle.DisarmPawnDesc>
+	<Bionicle.DisarmPawnDesc>Pulls a weapon out of a pawn's hands (5 second cooldown)</Bionicle.DisarmPawnDesc>
 
-	<Bionicle.WallRaise>Wall raise</Bionicle.WallRaise>
-	<Bionicle.WallRaiseDesc>PLACEHOLDER</Bionicle.WallRaiseDesc>
+	<Bionicle.WallRaise>Create Barrier</Bionicle.WallRaise>
+	<Bionicle.WallRaiseDesc>Creates a barrier of stone (10 second cooldown)</Bionicle.WallRaiseDesc>
 	
 	<Bionicle.Teleport>Teleport</Bionicle.Teleport>
-	<Bionicle.TeleportDesc>PLACEHOLDER</Bionicle.TeleportDesc>
+	<Bionicle.TeleportDesc>Teleports a pawn across the map to the targetted location</Bionicle.TeleportDesc>
 </LanguageData>
