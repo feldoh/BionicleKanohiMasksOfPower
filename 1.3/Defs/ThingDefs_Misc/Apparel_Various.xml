@@ -14,7 +14,7 @@
     <statBases>
       <WorkToMake>26250</WorkToMake>
       <MaxHitPoints>180</MaxHitPoints>
-      <Mass>2</Mass>
+      <Mass>0.5</Mass>
       <Flammability>0.4</Flammability>
       <ArmorRating_Sharp>1.2</ArmorRating_Sharp>
       <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
@@ -54,8 +54,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Hau</defName>
-    <label>Hau (mask of shielding)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Hau</label>
+    <description>Mask of Shielding. Generates a shield that protects from melee and ranged damage.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_HauMask</thingClass>
 	<tickerType>Normal</tickerType>
     <statBases>
@@ -63,17 +63,17 @@
       <EnergyShieldEnergyMax>1</EnergyShieldEnergyMax>
     </statBases>
 	<graphicData>
-		<texPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</texPath>
+		<texPath>Things/Pawn/Humanlike/Apparel/Hau/Hau</texPath>
 	</graphicData>
     <apparel>
-      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</wornGraphicPath>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Hau/Hau</wornGraphicPath>
     </apparel>
   </ThingDef>
 
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Kaukau</defName>
-    <label>Kaukau (mask of waterbreathing)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Kaukau</label>
+    <description>Mask of Waterbreathing. Protects the user from environmental hazards.</description>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Kaukau/Kaukau</texPath>
 	</graphicData>
@@ -84,8 +84,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Miru</defName>
-    <label>Miru (mask of levitation)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Miru</label>
+    <description>Mask of Levitation. Allows the wearer to leap through the air.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Miru</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Miru/Miru</texPath>
@@ -97,8 +97,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Kakama</defName>
-    <label>Kakama (mask of speed)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Kakama</label>
+    <description>Mask of Speed. Doubles manipulation and movement speed.</description>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Kakama/Kakama</texPath>
 	</graphicData>
@@ -109,8 +109,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Pakari</defName>
-    <label>Pakari (mask of strength)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Pakari</label>
+    <description>Mask of Strength. Doubles carry capacity and damage.</description>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Pakari/Pakari</texPath>
 	</graphicData>
@@ -121,8 +121,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Akaku</defName>
-    <label>Akaku (mask of xray vision)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Akaku</label>
+    <description>Mask of Xray Vision. Adds 5 to shooting and melee, decreases shooting cooldown by 50%.</description>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Akaku/Akaku</texPath>
 	</graphicData>
@@ -152,8 +152,8 @@
 	
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Huna</defName>
-    <label>Huna (mask of concealment)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Huna</label>
+    <description>Mask of Concealment. Makes the wearer invisible.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Huna</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Huna/Huna</texPath>
@@ -165,8 +165,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Rau</defName>
-    <label>Rau (mask of translation)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Rau</label>
+    <description>Mask of Translation. Adds 5 to crafting, social, and intellectual.</description>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Rau/Rau</texPath>
 	</graphicData>
@@ -185,8 +185,8 @@
 	
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Mahiki</defName>
-    <label>Mahiki (mask of illusion)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Mahiki</label>
+    <description>Mask of Illusion. Summons decoys of the wearer.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Mahiki</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Mahiki/Mahiki</texPath>
@@ -223,8 +223,8 @@
 	
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Komau</defName>
-    <label>Komau (mask of mind control)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Komau</label>
+    <description>Mask of Mind Control. Able to down pawns and change their mental state.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Komau</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Komau/Komau</texPath>
@@ -236,8 +236,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Ruru</defName>
-    <label>Ruru (mask of night vision)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Ruru</label>
+    <description>Mask of Night Vision. Prevents any darkness debuffs and can stun enemies.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Ruru</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Ruru/Ruru</texPath>
@@ -249,8 +249,8 @@
   
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Matatu</defName>
-    <label>Matatu (mask of telekinesis)</label>
-    <description>PLACEHOLDER.</description>
+    <label>Matatu</label>
+    <description>Mask of Telekinesis. Can summon walls, teleport pawns, and disarm enemies.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Matatu</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</texPath>
