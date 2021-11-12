@@ -16,4 +16,16 @@ namespace BionicleKanohiMasksOfPower
 			}
 		}
 	}
+
+	[HarmonyPatch(typeof(ITab_Pawn_Gear), "ShouldShowInventory")]
+	public static class ITab_Pawn_Gear_ShouldShowInventory_Patch
+	{
+		private static void Postfix(ref bool __result, Pawn p)
+		{
+			if (p.health?.hediffSet?.HasHediff(BionicleDefOf.BKMOP_PawnDuplicate) ?? false)
+            {
+				__result = false;
+			}
+		}
+	}
 }
