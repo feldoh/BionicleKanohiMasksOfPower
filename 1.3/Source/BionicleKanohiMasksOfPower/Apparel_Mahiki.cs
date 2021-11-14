@@ -58,6 +58,7 @@ namespace BionicleKanohiMasksOfPower
             if (Find.TickManager.TicksGame > initTick + 600)
             {
                 this.pawn.Destroy();
+                Find.WorldPawns.RemoveAndDiscardPawnViaGC(this.pawn);
             }
         }
         public override void ExposeData()
@@ -177,6 +178,9 @@ namespace BionicleKanohiMasksOfPower
             newPawn.Name = new NameTriple(nameTriple.First, nameTriple.Nick, nameTriple.Last);
             newPawn.story.childhood = origin.story.childhood;
             newPawn.story.adulthood = origin.story.adulthood;
+            newPawn.story.bodyType = origin.story.bodyType;
+            newPawn.story.hairDef = origin.story.hairDef;
+            newPawn.story.hairColor = origin.story.hairColor;
 
             newPawn.playerSettings = new Pawn_PlayerSettings(newPawn);
             newPawn.playerSettings.hostilityResponse = HostilityResponseMode.Attack;
