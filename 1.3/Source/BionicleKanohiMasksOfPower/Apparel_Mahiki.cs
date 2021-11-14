@@ -193,41 +193,10 @@ namespace BionicleKanohiMasksOfPower
             if (newPawn.timetable == null) newPawn.timetable = new Pawn_TimetableTracker(newPawn);
             if (origin.timetable?.times != null) newPawn.timetable.times = origin.timetable?.times;
 
-            var thoughts = origin.needs?.mood?.thoughts?.memories?.Memories;
-            bool isFactionLeader = origin.Faction.leader == origin;
-            var relations = origin.relations?.DirectRelations;
-            var relatedPawns = origin.relations?.RelatedPawns?.ToHashSet();
-            foreach (var otherPawn in origin.relations.RelatedPawns)
-            {
-                foreach (var rel2 in origin.GetRelations(otherPawn))
-                {
-                    if (relations.Where(r => r.def == rel2 && r.otherPawn == otherPawn).Count() == 0)
-                    {
-                        if (!rel2.implied)
-                        {
-                            relations.Add(new DirectPawnRelation(rel2, otherPawn, 0));
-                        }
-                    }
-                }
-                relatedPawns.Add(otherPawn);
-            }
-
-            var priorities = new Dictionary<WorkTypeDef, int>();
-            if (origin.workSettings != null && Traverse.Create(origin.workSettings).Field("priorities").GetValue<DefMap<WorkTypeDef, int>>() != null)
-            {
-                foreach (WorkTypeDef w in DefDatabase<WorkTypeDef>.AllDefs)
-                {
-                    priorities[w] = origin.workSettings.GetPriority(w);
-                }
-            }
 
             if (newPawn.Faction != origin.Faction)
             {
                 newPawn.SetFaction(origin.Faction);
-            }
-            if (isFactionLeader)
-            {
-                newPawn.Faction.leader = newPawn;
             }
 
             if (newPawn.needs?.mood?.thoughts?.memories?.Memories != null)
@@ -238,17 +207,6 @@ namespace BionicleKanohiMasksOfPower
                 }
             }
 
-            if (thoughts != null)
-            {
-                foreach (var thought in thoughts)
-                {
-                    if (thought is Thought_MemorySocial && thought.otherPawn == null)
-                    {
-                        continue;
-                    }
-                    newPawn.needs.mood.thoughts.memories.TryGainMemory(thought, thought.otherPawn);
-                }
-            }
             newPawn.story.traits.allTraits.Clear();
             var traits = origin.story?.traits?.allTraits;
             if (traits != null)
@@ -258,52 +216,7 @@ namespace BionicleKanohiMasksOfPower
                     newPawn.story.traits.GainTrait(trait);
                 }
             }
-
             newPawn.relations.ClearAllRelations();
-            foreach (var otherPawn in relatedPawns)
-            {
-                if (otherPawn != null)
-                {
-                    foreach (var rel in otherPawn.relations.DirectRelations)
-                    {
-                        if (origin.Name == rel.otherPawn?.Name)
-                        {
-                            rel.otherPawn = newPawn;
-                        }
-                    }
-                }
-            }
-
-            foreach (var otherPawn in relatedPawns)
-            {
-                if (otherPawn != null)
-                {
-                    foreach (var rel in relations)
-                    {
-                        foreach (var rel2 in otherPawn.relations.DirectRelations)
-                        {
-                            if (rel.def == rel2.def && rel2.otherPawn?.Name == newPawn.Name)
-                            {
-                                rel2.otherPawn = newPawn;
-                            }
-                        }
-                    }
-                }
-            }
-
-            foreach (var rel in relations)
-            {
-                if (rel.otherPawn != null)
-                {
-                    var oldRelation = rel.otherPawn.relations.DirectRelations.Where(r => r.def == rel.def && r.otherPawn.Name == newPawn.Name).FirstOrDefault();
-                    if (oldRelation != null)
-                    {
-                        oldRelation.otherPawn = newPawn;
-                    }
-                }
-                newPawn.relations.AddDirectRelation(rel.def, rel.otherPawn);
-            }
-
             var skills = origin.skills.skills;
             newPawn.skills.skills.Clear();
             if (skills != null)
@@ -316,16 +229,6 @@ namespace BionicleKanohiMasksOfPower
                     newSkill.xpSinceLastLevel = skill.xpSinceLastLevel;
                     newSkill.xpSinceMidnight = skill.xpSinceMidnight;
                     newPawn.skills.skills.Add(newSkill);
-                }
-            }
-
-            if (newPawn.workSettings == null) newPawn.workSettings = new Pawn_WorkSettings();
-            newPawn.Notify_DisabledWorkTypesChanged();
-            if (priorities != null)
-            {
-                foreach (var priority in priorities)
-                {
-                    newPawn.workSettings.SetPriority(priority.Key, priority.Value);
                 }
             }
 

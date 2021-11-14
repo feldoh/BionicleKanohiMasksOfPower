@@ -27,4 +27,7 @@
 	
 	<Bionicle.Teleport>Teleport</Bionicle.Teleport>
 	<Bionicle.TeleportDesc>Teleports a pawn across the map to the targetted location</Bionicle.TeleportDesc>
+	
+	<Bionicle.IsHologram>Is hologram</Bionicle.IsHologram>
+
 </LanguageData>

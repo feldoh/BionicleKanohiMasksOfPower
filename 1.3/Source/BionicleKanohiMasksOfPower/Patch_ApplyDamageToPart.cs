@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using SimpleTweaks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
