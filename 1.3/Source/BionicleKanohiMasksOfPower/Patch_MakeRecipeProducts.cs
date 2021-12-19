@@ -37,7 +37,6 @@ namespace BionicleKanohiMasksOfPower
 
         public static bool IsMasterworkOrLegendary(this Thing thing)
         {
-            return true;
             if (thing.TryGetQuality(out var qc))
             {
                 return qc == QualityCategory.Masterwork || qc == QualityCategory.Legendary;
