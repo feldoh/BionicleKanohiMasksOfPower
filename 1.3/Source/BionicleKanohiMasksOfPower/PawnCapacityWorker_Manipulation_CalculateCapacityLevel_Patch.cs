@@ -13,7 +13,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static void Postfix(ref float __result, HediffSet diffSet, List<PawnCapacityUtility.CapacityImpactor> impactors = null)
 		{
-			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Kakama))
+			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Kakama, out var apparel) && apparel.IsMasterworkOrLegendary())
             {
 				__result *= 2f;
 			}

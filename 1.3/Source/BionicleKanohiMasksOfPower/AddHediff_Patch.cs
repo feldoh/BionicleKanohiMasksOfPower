@@ -13,7 +13,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static bool Prefix(Pawn_HealthTracker __instance, Pawn ___pawn, Hediff hediff, BodyPartRecord part = null, DamageInfo? dinfo = null, DamageWorker.DamageResult result = null)
 		{
-			if (___pawn.Wears(BionicleDefOf.BKMOP_Kaukau) && (hediff.def?.defName == "SpaceHypoxia" 
+			if (___pawn.Wears(BionicleDefOf.BKMOP_Kaukau, out var apparel) && apparel.IsMasterworkOrLegendary() && (hediff.def?.defName == "SpaceHypoxia" 
 				|| hediff.def == HediffDefOf.ToxicBuildup
 				|| hediff.def == HediffDefOf.Heatstroke
 				|| hediff.def == HediffDefOf.Hypothermia))

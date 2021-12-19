@@ -104,6 +104,10 @@ namespace BionicleKanohiMasksOfPower
 		{
 			get
 			{
+				if (this.IsMasterworkOrLegendary())
+				{
+					return false;
+				}
 				Pawn wearer = base.Wearer;
 				if (!wearer.Spawned || wearer.Dead || wearer.Downed)
 				{
@@ -143,7 +147,7 @@ namespace BionicleKanohiMasksOfPower
 			{
 				yield return wornGizmo;
 			}
-			if (Find.Selector.SingleSelectedThing == base.Wearer)
+			if (Find.Selector.SingleSelectedThing == base.Wearer && this.IsMasterworkOrLegendary())
 			{
 				Gizmo_EnergyShieldStatus gizmo_EnergyShieldStatus = new Gizmo_EnergyShieldStatus();
 				gizmo_EnergyShieldStatus.shield = this;
@@ -159,6 +163,10 @@ namespace BionicleKanohiMasksOfPower
 		public override void Tick()
 		{
 			base.Tick();
+			if (this.IsMasterworkOrLegendary())
+            {
+				return;
+            }
 			if (base.Wearer == null)
 			{
 				energy = 0f;
@@ -183,6 +191,10 @@ namespace BionicleKanohiMasksOfPower
 
 		public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
 		{
+			if (this.IsMasterworkOrLegendary())
+			{
+				return false;
+			}
 			if (ShieldState != 0)
 			{
 				return false;
@@ -295,6 +307,10 @@ namespace BionicleKanohiMasksOfPower
 
 		public override bool AllowVerbCast(Verb verb)
 		{
+			if (this.IsMasterworkOrLegendary())
+			{
+				return true;
+			}
 			return !(verb is Verb_LaunchProjectile);
 		}
 	}

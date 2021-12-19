@@ -8,7 +8,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		public static bool Prefix(Thing __instance, DamageInfo dinfo)
 		{
-			if (__instance is Pawn pawn && pawn.Wears(BionicleDefOf.BKMOP_Kaukau) && dinfo.Def?.defName == "VacuumDamage")
+			if (__instance is Pawn pawn && pawn.Wears(BionicleDefOf.BKMOP_Kaukau, out var apparel) && apparel.IsMasterworkOrLegendary() && dinfo.Def?.defName == "VacuumDamage")
             {
 				return false;
 			}

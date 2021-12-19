@@ -125,7 +125,7 @@ namespace BionicleKanohiMasksOfPower
 			{
 				yield return g;
 			}
-			if (Wearer.IsColonistPlayerControlled)
+			if (Wearer.IsColonistPlayerControlled && this.IsMasterworkOrLegendary())
 			{
 				yield return new Command_Disarm(this)
 				{
@@ -164,8 +164,8 @@ namespace BionicleKanohiMasksOfPower
 
 				yield return new Command_Action
 				{
-					defaultLabel = "Bionicle.Teleport".Translate(),
-					defaultDesc = "Bionicle.TeleportDesc".Translate(),
+					defaultLabel = "Bionicle.Pull".Translate(),
+					defaultDesc = "Bionicle.PullDesc".Translate(),
 					action = delegate
 					{
 						Find.Targeter.BeginTargeting(TargetingParametersPawn(Wearer), delegate (LocalTargetInfo target)
@@ -177,7 +177,6 @@ namespace BionicleKanohiMasksOfPower
 								if (pawn2 != null)
 								{
 									pawn2.stances.stunner.StunFor(60, Wearer, addBattleLog: false, showMote: false);
-									pawn2.Notify_Teleported();
 								}
 							}, highlightAction: (LocalTargetInfo targetInfo) =>
 							{

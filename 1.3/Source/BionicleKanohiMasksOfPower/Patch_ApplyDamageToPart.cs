@@ -13,7 +13,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		public static void Prefix(ref DamageInfo dinfo, Pawn pawn, DamageResult result)
 		{
-			if (dinfo.Instigator is Pawn attacker && attacker.Wears(BionicleDefOf.BKMOP_Pakari))
+			if (dinfo.Instigator is Pawn attacker && attacker.Wears(BionicleDefOf.BKMOP_Pakari, out var apparel) && apparel.IsMasterworkOrLegendary())
 			{
 				dinfo.SetAmount(dinfo.Amount * 2f);
 			}

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WsVYJG3KJLwh0b25KQ1SNuZ7vSTN4UZ++l/fx5GOe/ORSbHAfeHNsbQ2XYTQl8gRg07VuQSQOJHIa2TR1I2Usg==",
+  "dgSpecHash": "14NKOj1VfsN7QoDZaXGyNYRJpt5t91v9G1nYix+cT+U9WROTj26Xb1wI11qHDOupaB7huKDoGmXryRD89upwlA==",
   "success": true,
   "projectFilePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\BionicleKanohiMasksOfPower.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vova\\.nuget\\packages\\krafs.publicizer\\1.0.1\\krafs.publicizer.1.0.1.nupkg.sha512",
-    "C:\\Users\\Vova\\.nuget\\packages\\krafs.rimworld.ref\\1.3.3171-beta\\krafs.rimworld.ref.1.3.3171-beta.nupkg.sha512",
+    "C:\\Users\\Vova\\.nuget\\packages\\krafs.rimworld.ref\\1.3.3209-beta\\krafs.rimworld.ref.1.3.3209-beta.nupkg.sha512",
     "C:\\Users\\Vova\\.nuget\\packages\\lib.harmony\\2.1.1\\lib.harmony.2.1.1.nupkg.sha512"
   ],
   "logs": []

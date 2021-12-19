@@ -50,7 +50,7 @@ namespace BionicleKanohiMasksOfPower
             {
                 yield return g;
             }
-            if (Wearer.IsColonistPlayerControlled)
+            if (Wearer.IsColonistPlayerControlled && this.IsMasterworkOrLegendary())
             {
 				yield return new Command_Invisibility(this)
 				{
@@ -65,7 +65,7 @@ namespace BionicleKanohiMasksOfPower
 					icon = this.def.uiIcon,
 					disabled = lastUsedTick + InvisibilityCooldownTicks > Find.TickManager.TicksGame
 				};
-            }
+			}
         }
 
         public override void ExposeData()

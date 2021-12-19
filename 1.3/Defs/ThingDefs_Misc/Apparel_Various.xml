@@ -1,6 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <RecipeDef>
+    <defName>BKMOP_Make_Hau</defName>
+    <label>make hau </label>
+    <description>PLACEHOLDEr.</description>
+    <jobString>making hau.</jobString>
+	<workSkill>Crafting</workSkill>
+	<effectWorking>Smith</effectWorking>
+	<soundWorking>Recipe_Smith</soundWorking>
+    <workAmount>2000</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+	<workerClass>BionicleKanohiMasksOfPower.Recipe_TransferQuality</workerClass>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Bow_Short</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Bow_Short</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <products>
+      <BKMOP_Hau>1</BKMOP_Hau>
+    </products>
+  </RecipeDef>
+  
   <ThingDef Name="BKMOP_ApparelBionicleMaskBase" ParentName="ArmorHelmetMakeableBase" Abstract="True">
     <techLevel>Spacer</techLevel>
     <graphicData>
@@ -257,6 +288,19 @@
 	</graphicData>
     <apparel>
       <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</wornGraphicPath>
+    </apparel>
+  </ThingDef>
+  
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+    <defName>BKMOP_Corruption</defName>
+    <label>Corruption</label>
+    <description>Mask of Corruption. PLACEHOLDER.</description>
+	<thingClass>BionicleKanohiMasksOfPower.Apparel_Corruption</thingClass>
+	<graphicData>
+		<texPath>Things/Pawn/Humanlike/Apparel/Corruption/Corruption</texPath>
+	</graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Corruption/Corruption</wornGraphicPath>
     </apparel>
   </ThingDef>
 </Defs>

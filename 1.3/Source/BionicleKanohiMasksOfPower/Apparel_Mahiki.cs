@@ -128,7 +128,7 @@ namespace BionicleKanohiMasksOfPower
             {
                 yield return g;
             }
-            if (Wearer.IsColonistPlayerControlled)
+            if (Wearer.IsColonistPlayerControlled && this.IsMasterworkOrLegendary())
             {
 				yield return new Command_Mahiki(this)
 				{
@@ -262,6 +262,8 @@ namespace BionicleKanohiMasksOfPower
             }
 
             newPawn.apparel.LockAll();
+
+            newPawn.ideo = null;
             return newPawn;
         }
     }

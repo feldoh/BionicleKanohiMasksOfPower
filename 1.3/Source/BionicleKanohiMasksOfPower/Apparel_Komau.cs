@@ -97,8 +97,8 @@ namespace BionicleKanohiMasksOfPower
             {
                 yield return g;
             }
-            if (Wearer.IsColonistPlayerControlled)
-            {
+            if (Wearer.IsColonistPlayerControlled && this.IsMasterworkOrLegendary())
+			{
 				yield return new Command_Down(this)
 				{
 					defaultLabel = "Bionicle.DownPawn".Translate(),

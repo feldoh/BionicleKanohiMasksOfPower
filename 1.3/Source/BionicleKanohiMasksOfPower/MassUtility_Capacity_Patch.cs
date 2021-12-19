@@ -10,7 +10,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static void Postfix(ref float __result, Pawn p, StringBuilder explanation = null)
 		{
-			if (p.Wears(BionicleDefOf.BKMOP_Pakari))
+			if (p.Wears(BionicleDefOf.BKMOP_Pakari, out var apparel) && apparel.IsMasterworkOrLegendary())
 			{
 				__result *= 2f;
 			}

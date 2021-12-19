@@ -45,6 +45,7 @@
     <Compile Include="Apparel_Huna.cs" />
     <Compile Include="Apparel_Matatu.cs" />
     <Compile Include="Apparel_Komau.cs" />
+    <Compile Include="Apparel_Corruption.cs" />
     <Compile Include="Apparel_Ruru.cs" />
     <Compile Include="Apparel_Mahiki.cs" />
     <Compile Include="Apparel_Miru.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="MassUtility_Capacity_Patch.cs" />
     <Compile Include="MaterialAllocator.cs" />
     <Compile Include="Patch_ApplyDamageToPart.cs" />
+    <Compile Include="Patch_MakeRecipeProducts.cs" />
     <Compile Include="PawnCapacityWorker_Manipulation_CalculateCapacityLevel_Patch.cs" />
     <Compile Include="PawnCapacityWorker_Sight_CalculateCapacityLevel_Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,7 +71,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Krafs.Rimworld.Ref">
-      <Version>1.3.3171-beta</Version>
+      <Version>1.3.3209-beta</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.1.1</Version>

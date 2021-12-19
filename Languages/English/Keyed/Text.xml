@@ -25,8 +25,8 @@
 	<Bionicle.WallRaise>Create Barrier</Bionicle.WallRaise>
 	<Bionicle.WallRaiseDesc>Creates a barrier of stone (10 second cooldown)</Bionicle.WallRaiseDesc>
 	
-	<Bionicle.Teleport>Teleport</Bionicle.Teleport>
-	<Bionicle.TeleportDesc>Teleports a pawn across the map to the targetted location</Bionicle.TeleportDesc>
+	<Bionicle.Pull>Pull</Bionicle.Pull>
+	<Bionicle.PullDesc>Pulls a pawn across the map to the targetted location</Bionicle.PullDesc>
 	
 	<Bionicle.IsHologram>Is hologram</Bionicle.IsHologram>
 

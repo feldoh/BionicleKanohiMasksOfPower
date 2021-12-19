@@ -10,7 +10,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static void Postfix(ref float __result, HediffSet diffSet, List<PawnCapacityUtility.CapacityImpactor> impactors = null)
 		{
-			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Akaku))
+			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Akaku, out var apparel) && apparel.IsMasterworkOrLegendary())
 			{
 				__result *= 2f;
 			}
@@ -22,7 +22,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static void Postfix(ref ThoughtState __result, Pawn p)
 		{
-			if (p.Wears(BionicleDefOf.BKMOP_Ruru))
+			if (p.Wears(BionicleDefOf.BKMOP_Ruru, out var apparel) && apparel.IsMasterworkOrLegendary())
 			{
 				__result = false;
 			}

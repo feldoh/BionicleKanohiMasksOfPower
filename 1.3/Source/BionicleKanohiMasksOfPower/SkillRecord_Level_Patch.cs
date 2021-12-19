@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using UnityEngine;
+using Verse;
 
 namespace BionicleKanohiMasksOfPower
 {
@@ -9,12 +10,12 @@ namespace BionicleKanohiMasksOfPower
 	{
 		public static void Postfix(SkillRecord __instance, ref int __result)
 		{
-			if ((__instance.def == SkillDefOf.Melee || __instance.def == SkillDefOf.Shooting) && __instance.Pawn.Wears(BionicleDefOf.BKMOP_Akaku))
+			if ((__instance.def == SkillDefOf.Melee || __instance.def == SkillDefOf.Shooting) && __instance.Pawn.Wears(BionicleDefOf.BKMOP_Akaku, out var apparel) && apparel.IsMasterworkOrLegendary())
             {
 				__result = Mathf.Min(20, __result + 5);
 			}
 			else if ((__instance.def == SkillDefOf.Social || __instance.def == SkillDefOf.Intellectual || __instance.def == SkillDefOf.Crafting) 
-				&& __instance.Pawn.Wears(BionicleDefOf.BKMOP_Rau))
+				&& __instance.Pawn.Wears(BionicleDefOf.BKMOP_Rau, out var apparel2) && apparel2.IsMasterworkOrLegendary())
             {
 				__result = Mathf.Min(20, __result + 5);
 			}

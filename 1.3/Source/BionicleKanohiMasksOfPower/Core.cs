@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using RimWorld;
 using System.Linq;
 using Verse;
 
@@ -14,9 +15,10 @@ namespace BionicleKanohiMasksOfPower
             harmony.PatchAll();
         }
 
-		public static bool Wears(this Pawn pawn, ThingDef thingDef)
+		public static bool Wears(this Pawn pawn, ThingDef thingDef, out Apparel apparel)
         {
-			return pawn.apparel?.WornApparel?.Any(x => x.def == thingDef) ?? false;
+            apparel = pawn.apparel?.WornApparel?.FirstOrDefault(x => x.def == thingDef);
+            return apparel != null;
         }
     }
 }
