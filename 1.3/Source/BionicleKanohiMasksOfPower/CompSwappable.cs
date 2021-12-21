@@ -26,7 +26,7 @@ namespace BionicleKanohiMasksOfPower
                 yield return g;
             }
 
-            if (Wearer.IsColonistPlayerControlled && this.parent.IsMasterworkOrLegendary())
+            if (Wearer.IsColonistPlayerControlled)
             {
                 foreach (var thing in Wearer.inventory.innerContainer)
                 {

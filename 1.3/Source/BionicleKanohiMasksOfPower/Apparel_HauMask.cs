@@ -104,7 +104,7 @@ namespace BionicleKanohiMasksOfPower
 		{
 			get
 			{
-				if (this.IsMasterworkOrLegendary())
+				if (!this.IsMasterworkOrLegendary())
 				{
 					return false;
 				}
@@ -163,7 +163,7 @@ namespace BionicleKanohiMasksOfPower
 		public override void Tick()
 		{
 			base.Tick();
-			if (this.IsMasterworkOrLegendary())
+			if (!this.IsMasterworkOrLegendary())
             {
 				return;
             }
@@ -191,7 +191,7 @@ namespace BionicleKanohiMasksOfPower
 
 		public override bool CheckPreAbsorbDamage(DamageInfo dinfo)
 		{
-			if (this.IsMasterworkOrLegendary())
+			if (!this.IsMasterworkOrLegendary())
 			{
 				return false;
 			}
@@ -307,7 +307,7 @@ namespace BionicleKanohiMasksOfPower
 
 		public override bool AllowVerbCast(Verb verb)
 		{
-			if (this.IsMasterworkOrLegendary())
+			if (!this.IsMasterworkOrLegendary())
 			{
 				return true;
 			}
