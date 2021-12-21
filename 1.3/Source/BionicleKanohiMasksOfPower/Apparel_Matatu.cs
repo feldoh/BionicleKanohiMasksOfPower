@@ -46,6 +46,7 @@ namespace BionicleKanohiMasksOfPower
         }
 	}
 
+	/*
 	[StaticConstructorOnStartup]
 	public class Command_WallRaise : Command_Action
 	{
@@ -78,14 +79,14 @@ namespace BionicleKanohiMasksOfPower
 			return new GizmoResult(result.State);
 		}
 	}
-
+*/
 	public class Apparel_Matatu : Apparel
 	{
 		public int lastUsedTickDisarm;
-		public int lastUsedTickWallRaise;
+		//public int lastUsedTickWallRaise;
 
 		public const int CooldownDisarmTicks = 900;
-		public const int CooldownWallRaise = 900;
+		//public const int CooldownWallRaise = 900;
 		public TargetingParameters TargetingParameters(Pawn pawn)
 		{
 			return new TargetingParameters
@@ -145,7 +146,7 @@ namespace BionicleKanohiMasksOfPower
 					icon = this.def.uiIcon,
 					disabled = lastUsedTickDisarm + Apparel_Matatu.CooldownDisarmTicks > Find.TickManager.TicksGame
 				};
-
+/*
 				yield return new Command_WallRaise(this)
 				{
 					defaultLabel = "Bionicle.WallRaise".Translate(),
@@ -161,7 +162,7 @@ namespace BionicleKanohiMasksOfPower
 					icon = this.def.uiIcon,
 					disabled = lastUsedTickWallRaise + Apparel_Matatu.CooldownWallRaise > Find.TickManager.TicksGame
 				};
-
+*/
 				yield return new Command_Action
 				{
 					defaultLabel = "Bionicle.Pull".Translate(),
@@ -195,6 +196,7 @@ namespace BionicleKanohiMasksOfPower
 				};
 			}
 		}
+		/*
 		public void Apply(LocalTargetInfo target)
 		{
 			Map map = Wearer.Map;
@@ -233,7 +235,7 @@ namespace BionicleKanohiMasksOfPower
 				}
 			}
 		}
-
+*/
 		public bool CanApplyOn(LocalTargetInfo target)
 		{
 			return Valid(target, throwMessages: false);
@@ -281,7 +283,7 @@ namespace BionicleKanohiMasksOfPower
 		{
 			base.ExposeData();
 			Scribe_Values.Look(ref lastUsedTickDisarm, "lastUsedTickDisarm");
-			Scribe_Values.Look(ref lastUsedTickWallRaise, "lastUsedTickWallRaise");
+		//	Scribe_Values.Look(ref lastUsedTickWallRaise, "lastUsedTickWallRaise");
 		}
 	}
 }

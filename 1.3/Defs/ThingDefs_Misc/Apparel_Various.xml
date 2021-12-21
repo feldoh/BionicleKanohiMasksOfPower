@@ -14,22 +14,45 @@
 	<workerClass>BionicleKanohiMasksOfPower.Recipe_TransferQuality</workerClass>
     <ingredients>
       <li>
+		<filter>
+          <thingDefs>
+            <li>KanokaRegen</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+	  </li>
+	  <li>
         <filter>
           <thingDefs>
-            <li>Bow_Short</li>
+			<li>KanokaEnlarge</li>
           </thingDefs>
         </filter>
         <count>1</count>
       </li>
+      <li>
+        <filter>
+          <stuffCategoriesToAllow>
+            <li>Metallic</li>
+          </stuffCategoriesToAllow>
+        </filter>
+        <count>20</count>
+      </li>
     </ingredients>
     <fixedIngredientFilter>
-      <thingDefs>
-        <li>Bow_Short</li>
-      </thingDefs>
+      <stuffCategoriesToAllow>
+        <li>Metallic</li>
+      </stuffCategoriesToAllow>
     </fixedIngredientFilter>
     <products>
       <BKMOP_Hau>1</BKMOP_Hau>
     </products>
+	<skillRequirements>
+      <Crafting>12</Crafting>
+    </skillRequirements>
+    <recipeUsers>
+      <li>FueledSmithy</li>
+      <li>ElectricSmithy</li>
+    </recipeUsers>
   </RecipeDef>
   
   <ThingDef Name="BKMOP_ApparelBionicleMaskBase" ParentName="ArmorHelmetMakeableBase" Abstract="True">
@@ -54,9 +77,12 @@
       <Insulation_Heat>2</Insulation_Heat>
       <EquipDelay>6</EquipDelay>
     </statBases>
+	<stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>20</costStuffCount>
     <costList>
       <ComponentSpacer>1</ComponentSpacer>
-      <Plasteel>50</Plasteel>
     </costList>
     <relicChance>3</relicChance>
     <apparel>
@@ -79,11 +105,11 @@
 	  </li>
     </comps>
     <thingSetMakerTags>
-      <li>RewardStandardHighFreq</li>
+      <li>RewardStandardMidFreq</li>
     </thingSetMakerTags>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"> <!--Hau-->
     <defName>BKMOP_Hau</defName>
     <label>Hau</label>
     <description>Mask of Shielding. Generates a shield that protects from melee and ranged damage.</description>
@@ -101,7 +127,7 @@
     </apparel>
   </ThingDef>
 
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Kaukau-->
     <defName>BKMOP_Kaukau</defName>
     <label>Kaukau</label>
     <description>Mask of Waterbreathing. Protects the user from environmental hazards.</description>
@@ -113,7 +139,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Miru-->
     <defName>BKMOP_Miru</defName>
     <label>Miru</label>
     <description>Mask of Levitation. Allows the wearer to leap through the air.</description>
@@ -126,7 +152,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Kakama-->
     <defName>BKMOP_Kakama</defName>
     <label>Kakama</label>
     <description>Mask of Speed. Doubles manipulation and movement speed.</description>
@@ -138,7 +164,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Pakari-->
     <defName>BKMOP_Pakari</defName>
     <label>Pakari</label>
     <description>Mask of Strength. Doubles carry capacity and damage.</description>
@@ -150,7 +176,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Akaku-->
     <defName>BKMOP_Akaku</defName>
     <label>Akaku</label>
     <description>Mask of Xray Vision. Adds 5 to shooting and melee, decreases shooting cooldown by 50%.</description>
@@ -181,7 +207,7 @@
 		</comps>
 	</HediffDef>
 	
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Huna-->
     <defName>BKMOP_Huna</defName>
     <label>Huna</label>
     <description>Mask of Concealment. Makes the wearer invisible.</description>
@@ -194,7 +220,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Rau-->
     <defName>BKMOP_Rau</defName>
     <label>Rau</label>
     <description>Mask of Translation. Adds 5 to crafting, social, and intellectual.</description>
@@ -214,7 +240,7 @@
 		<hediffClass>BionicleKanohiMasksOfPower.Hediff_Duplicate</hediffClass>
 	</HediffDef>
 	
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Mahiki-->
     <defName>BKMOP_Mahiki</defName>
     <label>Mahiki</label>
     <description>Mask of Illusion. Summons decoys of the wearer.</description>
@@ -252,7 +278,7 @@
 		</stages>
 	</HediffDef>
 	
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Komau-->
     <defName>BKMOP_Komau</defName>
     <label>Komau</label>
     <description>Mask of Mind Control. Able to down pawns and change their mental state.</description>
@@ -265,7 +291,7 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Ruru-->
     <defName>BKMOP_Ruru</defName>
     <label>Ruru</label>
     <description>Mask of Night Vision. Prevents any darkness debuffs and can stun enemies.</description>
@@ -278,10 +304,10 @@
     </apparel>
   </ThingDef>
   
-  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
+  <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Matatu-->
     <defName>BKMOP_Matatu</defName>
     <label>Matatu</label>
-    <description>Mask of Telekinesis. Can summon walls, teleport pawns, and disarm enemies.</description>
+    <description>Mask of Telekinesis. Can pull pawns and disarm enemies.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Matatu</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</texPath>
@@ -290,7 +316,7 @@
       <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Matatu/Matatu</wornGraphicPath>
     </apparel>
   </ThingDef>
-  
+  <!--
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase">
     <defName>BKMOP_Corruption</defName>
     <label>Corruption</label>
@@ -303,4 +329,5 @@
       <wornGraphicPath>Things/Pawn/Humanlike/Apparel/Corruption/Corruption</wornGraphicPath>
     </apparel>
   </ThingDef>
+  -->
 </Defs>
