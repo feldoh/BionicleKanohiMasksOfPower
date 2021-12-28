@@ -46,15 +46,53 @@ namespace BionicleKanohiMasksOfPower
 	public class Apparel_Ruru : Apparel
     {
 		public int lastUsedTick;
-		public const int CooldownTicks = 600;
-        public static TargetingParameters TargetingParameters(Pawn pawn)
-        {
-            return new TargetingParameters
-            {
-                canTargetPawns = true,
-                validator = (TargetInfo x) => x.Thing is Pawn other && other != pawn && GenSight.LineOfSight(pawn.Position, other.Position, pawn.Map)
-            };
-        }
+		public const int CooldownTicks = 450;
+		public const float EffectiveRange = 27f;
+		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
+		{
+			float num = EffectiveRange * EffectiveRange;
+			IntVec3 cell = targ.Cell;
+			if ((float)caster.Position.DistanceToSquared(cell) <= num)
+			{
+				return GenSight.LineOfSight(root, cell, caster.Map);
+			}
+			return false;
+		}
+		public static void DrawHighlight(Pawn caster, LocalTargetInfo target)//highlight outline
+		{
+			if (target.IsValid && ValidJumpTarget(caster.Map, target.Cell))
+			{
+				GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);
+			}
+			GenDraw.DrawRadiusRing(caster.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(caster.Position, c, caster.Map) && ValidJumpTarget(caster.Map, c));
+		}
+		public static bool ValidJumpTarget(Map map, IntVec3 cell)//check landing spot
+		{
+			if (!cell.IsValid || !cell.InBounds(map))//check if cell is valid and inside the map
+			{
+				return false;
+			}
+			if (cell.Impassable(map) || !cell.Walkable(map) || cell.Fogged(map))// check if you can land there, is walkable, and is not obscured
+			{
+				return false;
+			}
+			Building edifice = cell.GetEdifice(map);
+			Building_Door building_Door;
+			if (edifice != null && (building_Door = edifice as Building_Door) != null && !building_Door.Open)// check if door is open to move through
+			{
+				return false;
+			}
+			return true;
+		}
+		public TargetingParameters TargetingParameters(Pawn pawn)//target pawn, not self targettable, pawn is not downed, used in stun, 27 range, line of sight check
+		{
+			return new TargetingParameters
+			{
+				canTargetPawns = true,
+				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && x.Thing is Pawn other && other != pawn && !other.Downed
+			};
+		}
+
 
 
         public override IEnumerable<Gizmo> GetWornGizmos()
@@ -75,7 +113,10 @@ namespace BionicleKanohiMasksOfPower
 						{
 							localTargetInfo.Pawn.stances.stunner.StunFor(300, Wearer);
 							lastUsedTick = Find.TickManager.TicksGame;
-						});
+						}, highlightAction: (LocalTargetInfo x) =>
+						{
+							DrawHighlight(Wearer, x);
+						}, null, Wearer);
 					},
 					icon = this.def.uiIcon,
 					disabled = lastUsedTick + Apparel_Ruru.CooldownTicks > Find.TickManager.TicksGame

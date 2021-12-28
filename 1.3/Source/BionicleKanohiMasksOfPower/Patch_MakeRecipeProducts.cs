@@ -21,7 +21,7 @@ namespace BionicleKanohiMasksOfPower
             {
                 if (i.TryGetQuality(out QualityCategory qc))
                 {
-                    qualities.Add(qc);
+                    qualities.Add(qc);//compiles list of qualities
                 }
             }
 
@@ -32,14 +32,14 @@ namespace BionicleKanohiMasksOfPower
                     var comp = r.TryGetComp<CompQuality>();
                     if (comp != null)
                     {
-                        comp.SetQuality(qualities.Max(), ArtGenerationContext.Colony);
+                        comp.SetQuality(qualities.Max(), ArtGenerationContext.Colony);//finds best quality
                     }
                 }
                 yield return r;
             }
         }
 
-        public static bool IsMasterworkOrLegendary(this Thing thing)
+        public static bool IsMasterworkOrLegendary(this Thing thing)//checks quality of mask
         {
             if (thing.TryGetQuality(out var qc))
             {

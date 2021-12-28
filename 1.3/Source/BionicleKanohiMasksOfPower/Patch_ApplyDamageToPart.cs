@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 using static Verse.DamageWorker;
@@ -9,17 +10,36 @@ using static Verse.DamageWorker;
 namespace BionicleKanohiMasksOfPower
 {
     [HarmonyPatch(typeof(DamageWorker_AddInjury), "ApplyDamageToPart")]
-	public static class Patch_ApplyDamageToPart
-	{
-		public static void Prefix(ref DamageInfo dinfo, Pawn pawn, DamageResult result)
-		{
-			if (dinfo.Instigator is Pawn attacker && attacker.Wears(BionicleDefOf.BKMOP_Pakari, out var apparel) && apparel.IsMasterworkOrLegendary())
-			{
-				dinfo.SetAmount(dinfo.Amount * 2f);
-			}
-		}
-	}
-    public static class PawnOverlayUtility
+    public static class Patch_ApplyDamageToPart
+    {
+        public static void Prefix(ref DamageInfo dinfo, Pawn pawn, DamageResult result)
+        {
+            if (dinfo.Instigator is Pawn attacker && attacker.Wears(BionicleDefOf.BKMOP_Pakari, out var apparel) && apparel.IsMasterworkOrLegendary())//pakari damage is doubled
+            {
+                dinfo.SetAmount(dinfo.Amount * 2f);
+            }
+            if (dinfo.Instigator is Pawn attacker2 && attacker2.IsDuplicate())//illusion duplicates from mahiki cannot do damage
+            {
+                dinfo.SetAmount(dinfo.Amount * 0f);
+            }
+        }
+    }
+    [HarmonyPatch(typeof(DamageWorker_AddInjury), "ChooseHitPart")]
+    public static class Patch_ChooseHitPart
+    {
+        public static bool Prefix(DamageInfo dinfo, Pawn pawn, ref BodyPartRecord __result)
+        {
+            if (dinfo.Instigator is Pawn attacker3 && attacker3.Wears(BionicleDefOf.BKMOP_Akaku, out var apparel2) && apparel2.IsMasterworkOrLegendary())//Akaku targets vital organs, thank you Legodude17
+            {
+                var vitalParts = pawn.health.hediffSet.GetNotMissingParts(dinfo.Height, BodyPartDepth.Inside).Where(part => part.def.tags.Any(tag => tag.vital)).ToList();//reduced list of targets
+                if (vitalParts.TryRandomElementByWeight(x => x.coverageAbs * x.def.GetHitChanceFactorFor(dinfo.Def), out __result)) return false;//will the hit land?
+                if (vitalParts.TryRandomElementByWeight(x => x.coverageAbs, out __result)) return false;//will the hit be deflected?
+            }
+            return true;//pick part from list
+        }
+    }
+    
+    public static class PawnOverlayUtility//adds visual overlay for duplicate pawns
     {
         private static Dictionary<Material, Material> materials_DuplicatePawnOverlay = new Dictionary<Material, Material>();
         [TweakValue("00", 0f, 1f)] public static float colorR = 0.25f;

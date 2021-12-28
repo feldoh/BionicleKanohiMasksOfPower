@@ -14,7 +14,7 @@ using static UnityEngine.GraphicsBuffer;
 namespace BionicleKanohiMasksOfPower
 {
 	[StaticConstructorOnStartup]
-	public class Command_Disarm : Command_Action
+	public class Command_Disarm : Command_Action//disarm ability command action redefined for a second command action
 	{
 		private static readonly Texture2D cooldownBarTex = SolidColorMaterials.NewSolidColorTexture(new Color32(9, 203, 4, 64));
 
@@ -48,7 +48,7 @@ namespace BionicleKanohiMasksOfPower
 
 	/*
 	[StaticConstructorOnStartup]
-	public class Command_WallRaise : Command_Action
+	public class Command_WallRaise : Command_Action//wallraise ability
 	{
 		private static readonly Texture2D cooldownBarTex = SolidColorMaterials.NewSolidColorTexture(new Color32(9, 203, 4, 64));
 
@@ -80,39 +80,75 @@ namespace BionicleKanohiMasksOfPower
 		}
 	}
 */
-	public class Apparel_Matatu : Apparel
+	public class Apparel_Matatu : Apparel //apparel class
 	{
 		public int lastUsedTickDisarm;
 		//public int lastUsedTickWallRaise;
-
-		public const int CooldownDisarmTicks = 900;
+		public const float EffectiveRange = 27f;
+		public const int CooldownDisarmTicks = 600;
 		//public const int CooldownWallRaise = 900;
-		public TargetingParameters TargetingParameters(Pawn pawn)
+		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
+		{
+			float num = EffectiveRange * EffectiveRange;
+			IntVec3 cell = targ.Cell;
+			if ((float)caster.Position.DistanceToSquared(cell) <= num)
+			{
+				return GenSight.LineOfSight(root, cell, caster.Map);
+			}
+			return false;
+		}
+		public static void DrawHighlight(Pawn caster, LocalTargetInfo target)//highlight outline
+		{
+			if (target.IsValid && ValidJumpTarget(caster.Map, target.Cell))
+			{
+				GenDraw.DrawTargetHighlightWithLayer(target.CenterVector3, AltitudeLayer.MetaOverlays);
+			}
+			GenDraw.DrawRadiusRing(caster.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(caster.Position, c, caster.Map) && ValidJumpTarget(caster.Map, c));
+		}
+		public static bool ValidJumpTarget(Map map, IntVec3 cell)//check landing spot
+		{
+			if (!cell.IsValid || !cell.InBounds(map))//check if cell is valid and inside the map
+			{
+				return false;
+			}
+			if (cell.Impassable(map) || !cell.Walkable(map) || cell.Fogged(map))// check if you can land there, is walkable, and is not obscured
+			{
+				return false;
+			}
+			Building edifice = cell.GetEdifice(map);
+			Building_Door building_Door;
+			if (edifice != null && (building_Door = edifice as Building_Door) != null && !building_Door.Open)// check if door is open to move through
+			{
+				return false;
+			}
+			return true;
+		}
+		public TargetingParameters TargetingParameters(Pawn pawn)//target pawn, not self targettable, pawn is not downed, used in disarm, 27 range, line of sight check
 		{
 			return new TargetingParameters
 			{
 				canTargetPawns = true,
-				validator = (TargetInfo x) => x.Thing is Pawn other && other != pawn && !other.Downed
+				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && x.Thing is Pawn other && other != pawn && !other.Downed && pawn.Position.DistanceTo(other.Position) <= 27f
 			};
 		}
-		public TargetingParameters TargetingParametersPawn(Pawn pawn)
+		public TargetingParameters TargetingParametersPawn(Pawn pawn)//target pawn, not self targettable, 27 tile from origin, used for pawn in pull, los check
 		{
 			return new TargetingParameters
 			{
 				canTargetPawns = true,
-				validator = (TargetInfo x) => x.Thing is Pawn other && other != pawn && pawn.Position.DistanceTo(other.Position) <= 27f
+				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && x.Thing is Pawn other && other != pawn && pawn.Position.DistanceTo(other.Position) <= 27f
 			};
 		}
 
-		public TargetingParameters TargetingParametersTeleport(Pawn pawn)
+		public TargetingParameters TargetingParametersTeleport(Pawn pawn)//target walkable tile, 27 tile from origin, used for pulled pawn target, los check
 		{
 			return new TargetingParameters
 			{
 				canTargetLocations = true,
-				validator = (TargetInfo x) => x.Cell.Walkable(pawn.Map) && x.Cell.DistanceTo(pawn.Position) <= 27f
+				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && x.Cell.Walkable(pawn.Map) && x.Cell.DistanceTo(pawn.Position) <= 27f
 			};
 		}
-		public TargetingParameters TargetingParametersCell(Pawn pawn)
+		public TargetingParameters TargetingParametersCell(Pawn pawn)//target dependednt on "canapplyon" class, used to target location to spawn walls
 		{
 			return new TargetingParameters
 			{
@@ -134,17 +170,21 @@ namespace BionicleKanohiMasksOfPower
 					defaultDesc = "Bionicle.DisarmPawnDesc".Translate(),
 					action = delegate
 					{
-						Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)
+						Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)//targetting of pawn, target saved as localTargetInfo
 						{
-							var equipment = localTargetInfo.Pawn.equipment?.Primary;
-							if (equipment != null)
+							var equipment = localTargetInfo.Pawn.equipment?.Primary;//determine equipped weapon
+							if (equipment != null)//check if no weapon
 							{
-								localTargetInfo.Pawn.equipment.TryDropEquipment(equipment, out _, localTargetInfo.Pawn.Position);
+								localTargetInfo.Pawn.equipment.TryDropEquipment(equipment, out _, localTargetInfo.Pawn.Position);//pawn drop weapon
+								lastUsedTickDisarm = Find.TickManager.TicksGame;
 							}
-						});
+						}, highlightAction: (LocalTargetInfo x) =>
+						{
+							DrawHighlight(Wearer, x);
+						}, null, Wearer);
 					},
 					icon = this.def.uiIcon,
-					disabled = lastUsedTickDisarm + Apparel_Matatu.CooldownDisarmTicks > Find.TickManager.TicksGame
+					disabled = lastUsedTickDisarm + Apparel_Matatu.CooldownDisarmTicks > Find.TickManager.TicksGame//set ability as disabled by comparing cooldown ticks+ last used tick to global
 				};
 /*
 				yield return new Command_WallRaise(this)
@@ -153,9 +193,9 @@ namespace BionicleKanohiMasksOfPower
 					defaultDesc = "Bionicle.WallRaiseDesc".Translate(),
 					action = delegate
 					{
-						Find.Targeter.BeginTargeting(TargetingParametersCell(Wearer), delegate (LocalTargetInfo localTargetInfo)
+						Find.Targeter.BeginTargeting(TargetingParametersCell(Wearer), delegate (LocalTargetInfo localTargetInfo)//target location, saved to localTargetInfo
 						{
-							Apply(localTargetInfo);
+							Apply(localTargetInfo);//activate walls being summoned
 							lastUsedTickWallRaise = Find.TickManager.TicksGame;
 						}, highlightAction: (LocalTargetInfo x) => DrawEffectPreview(x), null, Wearer);
 					},
@@ -169,27 +209,25 @@ namespace BionicleKanohiMasksOfPower
 					defaultDesc = "Bionicle.PullDesc".Translate(),
 					action = delegate
 					{
-						Find.Targeter.BeginTargeting(TargetingParametersPawn(Wearer), delegate (LocalTargetInfo target)
+						Find.Targeter.BeginTargeting(TargetingParametersPawn(Wearer), delegate (LocalTargetInfo target)//select pawn to move, save as target
 						{
-							Find.Targeter.BeginTargeting(TargetingParametersTeleport(target.Pawn), delegate (LocalTargetInfo dest)
+							Find.Targeter.BeginTargeting(TargetingParametersTeleport(target.Pawn), delegate (LocalTargetInfo dest)// select location to move pawn target, save to dest
 							{
-								target.Thing.Position = dest.Cell;
-								Pawn pawn2 = target.Thing as Pawn;
+								target.Pawn.teleporting = true;
+								target.Thing.Position = dest.Cell;//set pawn position as selected destination
+								target.Pawn.teleporting = false;
+								Pawn pawn2 = target.Thing as Pawn;//BUG: pawn teleports back after moving
 								if (pawn2 != null)
 								{
-									pawn2.stances.stunner.StunFor(60, Wearer, addBattleLog: false, showMote: false);
+									pawn2.stances.stunner.StunFor(60, Wearer, addBattleLog: false, showMote: true);//stun pawn for 60 ticks
 								}
-							}, highlightAction: (LocalTargetInfo targetInfo) =>
+							}, highlightAction: (LocalTargetInfo x) =>
 							{
-								var fields = GenRadial.RadialCellsAround(target.Pawn.Position, 27f, true).Where(x => x.Walkable(Wearer.Map));
-								GenDraw.DrawFieldEdges(fields.ToList());
-								GenDraw.DrawTargetHighlightWithLayer(targetInfo.Cell, AltitudeLayer.MetaOverlays);
+								DrawHighlight(target.Pawn, x);
 							}, null, Wearer);
-						}, highlightAction: (LocalTargetInfo targetInfo) =>
+						}, highlightAction: (LocalTargetInfo x) =>
 						{
-							var fields = GenRadial.RadialCellsAround(Wearer.Position, 27f, true);
-							GenDraw.DrawFieldEdges(fields.ToList());
-							GenDraw.DrawTargetHighlightWithLayer(targetInfo.Cell, AltitudeLayer.MetaOverlays);
+							DrawHighlight(Wearer, x);
 						}, null, Wearer);
 					},
 					icon = this.def.uiIcon,
@@ -197,7 +235,7 @@ namespace BionicleKanohiMasksOfPower
 			}
 		}
 		/*
-		public void Apply(LocalTargetInfo target)
+		public void Apply(LocalTargetInfo target)//spawns walls
 		{
 			Map map = Wearer.Map;
 			List<Thing> list = new List<Thing>();
@@ -236,12 +274,12 @@ namespace BionicleKanohiMasksOfPower
 			}
 		}
 */
-		public bool CanApplyOn(LocalTargetInfo target)
+		public bool CanApplyOn(LocalTargetInfo target)//used for wallraise
 		{
 			return Valid(target, throwMessages: false);
 		}
 
-		public void DrawEffectPreview(LocalTargetInfo target)
+		public void DrawEffectPreview(LocalTargetInfo target)//used for wallraise
 		{
 			GenDraw.DrawFieldEdges(AffectedCells(target, Wearer.Map).ToList(), Valid(target) ? Color.white : Color.red);
 		}

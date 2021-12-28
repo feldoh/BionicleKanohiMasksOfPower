@@ -5,7 +5,7 @@ using Verse;
 namespace BionicleKanohiMasksOfPower
 {
 
-	public class CompProperties_Swappable : CompProperties
+	public class CompProperties_Swappable : CompProperties//adds comp for items
     {
         public string swapGroupKey;
         public CompProperties_Swappable()
@@ -21,14 +21,14 @@ namespace BionicleKanohiMasksOfPower
         public Pawn Wearer => Apparel.Wearer;
         public override IEnumerable<Gizmo> CompGetWornGizmosExtra()
         {
-            foreach (var g in base.CompGetWornGizmosExtra())
+            foreach (var g in base.CompGetWornGizmosExtra())//adds gizmos
             {
                 yield return g;
             }
 
             if (Wearer.IsColonistPlayerControlled)
             {
-                foreach (var thing in Wearer.inventory.innerContainer)
+                foreach (var thing in Wearer.inventory.innerContainer)//checks inventory for swappable masks
                 {
                     if (thing is Apparel apparel)
                     {

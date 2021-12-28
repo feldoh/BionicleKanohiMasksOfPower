@@ -304,7 +304,7 @@ namespace BionicleKanohiMasksOfPower
 				Graphics.DrawMesh(MeshPool.plane10, matrix, BubbleMat, 0);
 			}
 		}
-
+/*
 		public override bool AllowVerbCast(Verb verb)
 		{
 			if (!this.IsMasterworkOrLegendary())
@@ -313,5 +313,6 @@ namespace BionicleKanohiMasksOfPower
 			}
 			return !(verb is Verb_LaunchProjectile);
 		}
+		*/
 	}
 }

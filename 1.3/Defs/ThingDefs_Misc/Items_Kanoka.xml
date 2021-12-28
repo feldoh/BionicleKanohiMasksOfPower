@@ -79,7 +79,7 @@
   </ThingDef>
   
   <ThingDef ParentName="KanokaBase">
-    <defName>KanokaFreexe</defName>
+    <defName>KanokaFreeze</defName>
     <label>Kanoka Disk of Freezing</label>
     <description>A Kanoka disk used in the crafting of Huna, Komau and Rau Kanohi.</description>
   </ThingDef>

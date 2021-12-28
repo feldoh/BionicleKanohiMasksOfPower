@@ -13,7 +13,7 @@ namespace BionicleKanohiMasksOfPower
 	{
 		private static void Postfix(ref float __result, HediffSet diffSet, List<PawnCapacityUtility.CapacityImpactor> impactors = null)
 		{
-			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Kakama, out var apparel) && apparel.IsMasterworkOrLegendary())
+			if (diffSet.pawn.Wears(BionicleDefOf.BKMOP_Kakama, out var apparel) && apparel.IsMasterworkOrLegendary())//doubles manipulation speed with kakama
             {
 				__result *= 2f;
 			}
@@ -35,7 +35,7 @@ namespace BionicleKanohiMasksOfPower
 	[HarmonyPatch(typeof(Pawn_ApparelTracker), "TryDrop",
 	new Type[] { typeof(Apparel), typeof(Apparel), typeof(IntVec3), typeof(bool) },
 	new ArgumentType[] { ArgumentType.Normal, ArgumentType.Out, ArgumentType.Normal, ArgumentType.Normal })]
-	public static class Patch_TryDrop
+	public static class Patch_TryDrop//prevent duplicate from dropping weapon
 	{
 		private static bool Prefix(Pawn_ApparelTracker __instance, Apparel ap)
 		{
@@ -48,7 +48,7 @@ namespace BionicleKanohiMasksOfPower
 	}
 
 	[HarmonyPatch(typeof(Pawn_EquipmentTracker), "TryDropEquipment")]
-	public static class TryDropEquipment_Patch
+	public static class TryDropEquipment_Patch//prevent duplicate from droppping equipment
 	{
 		private static bool Prefix(Pawn_EquipmentTracker __instance, ThingWithComps eq, ThingWithComps resultingEq, IntVec3 pos, bool forbid = true)
 		{
@@ -75,7 +75,7 @@ namespace BionicleKanohiMasksOfPower
 	[HarmonyPatch(typeof(EquipmentUtility), "CanEquip", 
 		new Type[] { typeof(Thing), typeof(Pawn), typeof(string), typeof(bool) },
 		new ArgumentType[] { ArgumentType.Normal, ArgumentType.Normal, ArgumentType.Out, ArgumentType.Normal })]
-	public static class EquipmentUtility_CanEquip_Patch
+	public static class EquipmentUtility_CanEquip_Patch//prevent duplicate from picking up item
 	{
 		private static void Postfix(ref bool __result, Thing thing, Pawn pawn, ref string cantReason, bool checkBonded = true)
 		{

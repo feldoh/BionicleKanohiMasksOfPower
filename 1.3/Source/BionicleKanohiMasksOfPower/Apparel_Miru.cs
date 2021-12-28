@@ -9,7 +9,7 @@ using Verse.Noise;
 namespace BionicleKanohiMasksOfPower
 {
 	[StaticConstructorOnStartup]
-	public class Command_Jump : Command_Action
+	public class Command_Jump : Command_Action//create gizmo
 	{
 		private static readonly Texture2D cooldownBarTex = SolidColorMaterials.NewSolidColorTexture(new Color32(9, 203, 4, 64));
 
@@ -40,12 +40,12 @@ namespace BionicleKanohiMasksOfPower
 			return new GizmoResult(result.State);
         }
 	}
-	public class Apparel_Miru : Apparel
+	public class Apparel_Miru : Apparel//apparel class
     {
 		public int lastUsedTick;
 		public const float EffectiveRange = 15f;
-		public const int JumpCooldownTicks = 600;
-		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)
+		public const int JumpCooldownTicks = 300;
+		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
 		{
 			float num = EffectiveRange * EffectiveRange;
 			IntVec3 cell = targ.Cell;
@@ -56,7 +56,7 @@ namespace BionicleKanohiMasksOfPower
 			return false;
 		}
 
-		public static void DrawHighlight(Pawn caster, LocalTargetInfo target)
+		public static void DrawHighlight(Pawn caster, LocalTargetInfo target)//highlight outline
 		{
 			if (target.IsValid && ValidJumpTarget(caster.Map, target.Cell))
 			{
@@ -65,19 +65,19 @@ namespace BionicleKanohiMasksOfPower
 			GenDraw.DrawRadiusRing(caster.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(caster.Position, c, caster.Map) && ValidJumpTarget(caster.Map, c));
 		}
 
-		public static bool ValidJumpTarget(Map map, IntVec3 cell)
+		public static bool ValidJumpTarget(Map map, IntVec3 cell)//check landing spot
 		{
-			if (!cell.IsValid || !cell.InBounds(map))
+			if (!cell.IsValid || !cell.InBounds(map))//check if cell is valid and inside the map
 			{
 				return false;
 			}
-			if (cell.Impassable(map) || !cell.Walkable(map) || cell.Fogged(map))
+			if (cell.Impassable(map) || !cell.Walkable(map) || cell.Fogged(map))// check if you can land there, is walkable, and is not obscured
 			{
 				return false;
 			}
 			Building edifice = cell.GetEdifice(map);
 			Building_Door building_Door;
-			if (edifice != null && (building_Door = edifice as Building_Door) != null && !building_Door.Open)
+			if (edifice != null && (building_Door = edifice as Building_Door) != null && !building_Door.Open)// check if door is open to move through
 			{
 				return false;
 			}
@@ -91,7 +91,7 @@ namespace BionicleKanohiMasksOfPower
 				canTargetLocations = true,
 				canTargetPawns = false,
 				canTargetBuildings = false,
-				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && ValidJumpTarget(pawn.Map, x.Cell)
+				validator = (TargetInfo x) => CanHitTargetFrom(pawn, pawn.Position, x.Cell) && ValidJumpTarget(pawn.Map, x.Cell)//check for line of sight and is landing spot
 			};
         }
 
@@ -113,9 +113,9 @@ namespace BionicleKanohiMasksOfPower
 						Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)
 						{
 							var map = Wearer.Map;
-							Wearer.rotationTracker.FaceCell(localTargetInfo.Cell);
-							PawnFlyer pawnFlyer = PawnFlyer.MakeFlyer(ThingDefOf.PawnJumper, Wearer, localTargetInfo.Cell);
-							GenSpawn.Spawn(pawnFlyer, localTargetInfo.Cell, map);
+							Wearer.rotationTracker.FaceCell(localTargetInfo.Cell);//face direction of movement
+							PawnFlyer pawnFlyer = PawnFlyer.MakeFlyer(ThingDefOf.PawnJumper, Wearer, localTargetInfo.Cell);//change pawn into flyer pawn with target in mind
+							GenSpawn.Spawn(pawnFlyer, localTargetInfo.Cell, map);//spawn flyer pawn onto map
 							lastUsedTick = Find.TickManager.TicksGame;
 						}, highlightAction: (LocalTargetInfo x) =>
 						{

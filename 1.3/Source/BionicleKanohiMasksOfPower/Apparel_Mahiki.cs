@@ -44,7 +44,7 @@ namespace BionicleKanohiMasksOfPower
         }
 	}
 
-    public class Hediff_Duplicate : HediffWithComps
+    public class Hediff_Duplicate : HediffWithComps//duplicate hediff deletes pawn after 10 seconds
     {
         public int initTick;
         public override void PostAdd(DamageInfo? dinfo)
@@ -52,10 +52,11 @@ namespace BionicleKanohiMasksOfPower
             base.PostAdd(dinfo);
             initTick = Find.TickManager.TicksGame;
         }
+        
         public override void Tick()
         {
             base.Tick();
-            if (Find.TickManager.TicksGame > initTick + 600)
+            if ((Find.TickManager.TicksGame > initTick + 600)||this.pawn.Downed)//if pawn is downed, it dissappears before errors occur
             {
                 this.pawn.Destroy();
                 Find.WorldPawns.RemoveAndDiscardPawnViaGC(this.pawn);
@@ -71,8 +72,8 @@ namespace BionicleKanohiMasksOfPower
     {
 		public int lastUsedTick;
 		public const float EffectiveRange = 15f;
-		public const int CooldownTicks = 900;
-		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)
+		public const int CooldownTicks = 0;//set to no cooldown
+		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
 		{
 			float num = EffectiveRange * EffectiveRange;
 			IntVec3 cell = targ.Cell;
@@ -138,10 +139,10 @@ namespace BionicleKanohiMasksOfPower
 					{
 						Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)
 						{
-                            var pawn = PawnUtility.GetPawnDuplicate(Wearer, Wearer.kindDef);
-                            var hediff = HediffMaker.MakeHediff(BionicleDefOf.BKMOP_PawnDuplicate, pawn);
-                            pawn.health.AddHediff(hediff);
-                            GenSpawn.Spawn(pawn, localTargetInfo.Cell, Wearer.Map);
+                            var pawn = PawnUtility.GetPawnDuplicate(Wearer, Wearer.kindDef);//create new pawn duplicate
+                            var hediff = HediffMaker.MakeHediff(BionicleDefOf.BKMOP_PawnDuplicate, pawn);//create duplicate hediff
+                            pawn.health.AddHediff(hediff);//add hediff to duplicate
+                            GenSpawn.Spawn(pawn, localTargetInfo.Cell, Wearer.Map);//spawn duplicate on map
                             LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_DefendPoint(localTargetInfo.Cell, addFleeToil: false), Wearer.Map, Gen.YieldSingle(pawn));
 							lastUsedTick = Find.TickManager.TicksGame;
 						}, highlightAction: (LocalTargetInfo x) =>
@@ -167,7 +168,7 @@ namespace BionicleKanohiMasksOfPower
         }
     }
 
-	public static class PawnUtility
+	public static class PawnUtility//creates new duplicate pawn
     {
         public static Pawn GetPawnDuplicate(Pawn origin, PawnKindDef newPawnKindDef)
         {
@@ -261,7 +262,7 @@ namespace BionicleKanohiMasksOfPower
                 newPawn.inventory.TryAddItemNotForSale(thing);
             }
 
-            newPawn.apparel.LockAll();
+            newPawn.apparel.LockAll();//locks apparel on duplicate
 
             newPawn.ideo = null;
             return newPawn;

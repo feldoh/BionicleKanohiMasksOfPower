@@ -43,7 +43,7 @@ namespace BionicleKanohiMasksOfPower
 	public class Apparel_Huna : Apparel
     {
 		public int lastUsedTick;
-		public const int InvisibilityCooldownTicks = 1800;
+		public const int InvisibilityCooldownTicks = 1740;//cooldown of 29 seconds, uptime of 30 seconds
 		public override IEnumerable<Gizmo> GetWornGizmos()
         {
             foreach (var g in base.GetWornGizmos())
