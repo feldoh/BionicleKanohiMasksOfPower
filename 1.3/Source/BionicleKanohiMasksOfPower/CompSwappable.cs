@@ -41,14 +41,17 @@ namespace BionicleKanohiMasksOfPower
                                 defaultDesc = apparel.def.description,
                                 action = delegate
                                 {
-                                    var pawn = Wearer;
-                                    pawn.inventory.innerContainer.TryAddOrTransfer(this.parent);
-                                    apparel.holdingOwner.Remove(apparel);
-                                    pawn.apparel.Wear(apparel, false);
-                                    pawn.health.hediffSet.DirtyCache();
-                                    pawn.health.CheckForStateChange(null, null);
+                                    if (!Find.Targeter.IsTargeting)
+                                    {
+                                        var pawn = Wearer;
+                                        pawn.inventory.innerContainer.TryAddOrTransfer(this.parent);
+                                        apparel.holdingOwner.Remove(apparel);
+                                        pawn.apparel.Wear(apparel, false);
+                                        pawn.health.hediffSet.DirtyCache();
+                                        pawn.health.CheckForStateChange(null, null);
+                                    }
                                 },
-                                icon = apparel.def.uiIcon
+                                icon = apparel.def.uiIcon,
                             };
                         }
                     }

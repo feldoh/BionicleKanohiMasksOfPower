@@ -9,6 +9,7 @@ using UnityEngine.Networking;
 using Verse;
 using Verse.AI.Group;
 using Verse.Noise;
+//using VFECore.Abilities;
 using static UnityEngine.GraphicsBuffer;
 
 namespace BionicleKanohiMasksOfPower
@@ -213,14 +214,18 @@ namespace BionicleKanohiMasksOfPower
 						{
 							Find.Targeter.BeginTargeting(TargetingParametersTeleport(target.Pawn), delegate (LocalTargetInfo dest)// select location to move pawn target, save to dest
 							{
-								target.Pawn.teleporting = true;
-								target.Thing.Position = dest.Cell;//set pawn position as selected destination
-								target.Pawn.teleporting = false;
-								Pawn pawn2 = target.Thing as Pawn;//BUG: pawn teleports back after moving
-								if (pawn2 != null)
-								{
-									pawn2.stances.stunner.StunFor(60, Wearer, addBattleLog: false, showMote: true);//stun pawn for 60 ticks
-								}
+								var map = Wearer.Map;
+                                //if (target.Pawn != null && target.Pawn.Faction != Wearer.Faction)
+                                //{
+                                //    target.Pawn.stances.stunner.StunFor(600, Wearer, addBattleLog: false, showMote: true);//stun pawn for 60 ticks
+                                //}
+                                Pawn pawn2 = target.Pawn;
+								//IntVec3 destination = dest.Cell + ((pawn2.Position - dest.Cell).ToVector3().normalized * 2).ToIntVec3();//set selected location as destination
+								//AbilityPawnFlyer flyer = (AbilityPawnFlyer)PawnFlyer.MakeFlyer(VFE_DefOf_Abilities.VFEA_AbilityFlyer, pawn2, dest.Cell);//change pawn into flyer pawn with target in mind
+								//flyer.target = destination.ToVector3();
+								//GenSpawn.Spawn(flyer, target.Cell, map);//spawn flyer pawn onto map
+								PawnFlyer pawnFlyer = PawnFlyer.MakeFlyer(ThingDefOf.PawnJumper, pawn2, dest.Cell);//change pawn into flyer pawn with target in mind
+								GenSpawn.Spawn(pawnFlyer, dest.Cell, map);//spawn flyer pawn onto map
 							}, highlightAction: (LocalTargetInfo x) =>
 							{
 								DrawHighlight(target.Pawn, x);

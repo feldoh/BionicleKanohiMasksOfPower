@@ -27,15 +27,15 @@ namespace BionicleKanohiMasksOfPower
 		{
 			Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
 			GizmoResult result = base.GizmoOnGUI(topLeft, maxWidth, parms);
-			if (apparel.lastUsedTick > 0)
-			{
-				var cooldownTicksRemaining = Find.TickManager.TicksGame - apparel.lastUsedTick;
-				if (cooldownTicksRemaining < Apparel_Mahiki.CooldownTicks)
-				{
-					float num = Mathf.InverseLerp(Apparel_Mahiki.CooldownTicks, 0, cooldownTicksRemaining);
-					Widgets.FillableBar(rect, Mathf.Clamp01(num), cooldownBarTex, null, doBorder: false);
-				}
-			}
+			//if (apparel.lastUsedTick > 0)
+			//{
+			//	var cooldownTicksRemaining = Find.TickManager.TicksGame - apparel.lastUsedTick;
+			//	if (cooldownTicksRemaining < Apparel_Mahiki.CooldownTicks)
+			//	{
+			//		float num = Mathf.InverseLerp(Apparel_Mahiki.CooldownTicks, 0, cooldownTicksRemaining);
+			//		Widgets.FillableBar(rect, Mathf.Clamp01(num), cooldownBarTex, null, doBorder: false);
+			//	}
+			//}
 			if (result.State == GizmoState.Interacted)
 			{
 				return result;
@@ -70,7 +70,7 @@ namespace BionicleKanohiMasksOfPower
     }
 	public class Apparel_Mahiki : Apparel
     {
-		public int lastUsedTick;
+		//public int lastUsedTick;
 		public const float EffectiveRange = 15f;
 		public const int CooldownTicks = 0;//set to no cooldown
 		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
@@ -143,8 +143,8 @@ namespace BionicleKanohiMasksOfPower
                             var hediff = HediffMaker.MakeHediff(BionicleDefOf.BKMOP_PawnDuplicate, pawn);//create duplicate hediff
                             pawn.health.AddHediff(hediff);//add hediff to duplicate
                             GenSpawn.Spawn(pawn, localTargetInfo.Cell, Wearer.Map);//spawn duplicate on map
-                            LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_DefendPoint(localTargetInfo.Cell, addFleeToil: false), Wearer.Map, Gen.YieldSingle(pawn));
-							lastUsedTick = Find.TickManager.TicksGame;
+                            LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_DefendPoint(localTargetInfo.Cell, addFleeToil: false), Wearer.Map, Gen.YieldSingle(pawn));//give ai of pawn
+							//lastUsedTick = Find.TickManager.TicksGame;
 						}, highlightAction: (LocalTargetInfo x) =>
 						{
 							GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
@@ -156,7 +156,7 @@ namespace BionicleKanohiMasksOfPower
 						GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
 					},
 					icon = this.def.uiIcon,
-					disabled = lastUsedTick + Apparel_Mahiki.CooldownTicks > Find.TickManager.TicksGame
+					//disabled = lastUsedTick + Apparel_Mahiki.CooldownTicks > Find.TickManager.TicksGame
 				};
             }
         }
@@ -164,7 +164,7 @@ namespace BionicleKanohiMasksOfPower
         public override void ExposeData()
         {
             base.ExposeData();
-			Scribe_Values.Look(ref lastUsedTick, "lastUsedTick");
+			//Scribe_Values.Look(ref lastUsedTick, "lastUsedTick");
         }
     }
 
@@ -255,12 +255,12 @@ namespace BionicleKanohiMasksOfPower
 
             var inventoryThings = origin.inventory?.innerContainer?.ToList() ?? new List<Thing>();
             newPawn.inventory.DestroyAll();
-            for (int num = inventoryThings.Count - 1; num >= 0; num--)
-            {
-                var thing = ThingMaker.MakeThing(inventoryThings[num].def, inventoryThings[num].Stuff);
-                thing.stackCount = inventoryThings[num].stackCount;
-                newPawn.inventory.TryAddItemNotForSale(thing);
-            }
+            //for (int num = inventoryThings.Count - 1; num >= 0; num--)
+            //{
+            //    var thing = ThingMaker.MakeThing(inventoryThings[num].def, inventoryThings[num].Stuff);
+            //    thing.stackCount = inventoryThings[num].stackCount;
+            //    newPawn.inventory.TryAddItemNotForSale(thing);
+            //}
 
             newPawn.apparel.LockAll();//locks apparel on duplicate
 

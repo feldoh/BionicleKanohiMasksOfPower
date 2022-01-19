@@ -35,7 +35,6 @@ namespace BionicleKanohiMasksOfPower
                 Wearer.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);//casues manhunter behavior to start
             }
         }
-
         public override void Notify_Unequipped(Pawn Wearer)
         {
             base.Notify_Unequipped(Wearer);
