@@ -3,9 +3,11 @@ using RimWorld;
 using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Networking;
 using Verse;
+using Verse.AI;
 using Verse.AI.Group;
 using Verse.Noise;
 
@@ -14,7 +16,6 @@ namespace BionicleKanohiMasksOfPower
 
     public class CompProperties_Corrupt : CompProperties//adds comp for items
     {
-        public string swapGroupKey;
         public CompProperties_Corrupt()
         {
             this.compClass = typeof(CompCorrupt);
@@ -23,26 +24,44 @@ namespace BionicleKanohiMasksOfPower
 
     public class CompCorrupt : ThingComp
     {
-        public CompProperties_Corrupt Props => base.props as CompProperties_Corrupt;
-        public Apparel Apparel => this.parent as Apparel;
-        public Pawn Wearer => Apparel.Wearer;
-        public override void Notify_Equipped(Pawn Wearer)
+        [HarmonyPatch(typeof(JobDriver_Wear), "MakeNewToils")]
+        public static class JobDriver_WearPatch
         {
-            base.Notify_Equipped(Wearer);
-            if (Apparel.WornByCorpse)
+            public static IEnumerable<Toil> Postfix(IEnumerable<Toil> __result, JobDriver_Wear __instance)
             {
-                HealthUtility.AdjustSeverity(Wearer, HediffDefOf.Scaria, 1f);
-                Wearer.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);//casues manhunter behavior to start
+                foreach (var toil in __result)
+                {
+                    yield return toil;
+                }
+                yield return new Toil
+                {
+                    initAction = delegate
+                    {
+                        var apparel = (Apparel)__instance.job.GetTarget(TargetIndex.A).Thing;
+                        if (apparel.Wearer == __instance.pawn)
+                        {
+                            var corruptComp = apparel.GetComp<CompCorrupt>();
+                            if (corruptComp != null)
+                            {
+                                if (apparel.WornByCorpse)
+                                {
+                                    HealthUtility.AdjustSeverity(__instance.pawn, HediffDefOf.Scaria, 1f);
+                                    __instance.pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.ManhunterPermanent);//casues manhunter behavior to start
+                                }
+                            }
+                        }
+                    }
+                };
             }
         }
-        public override void Notify_Unequipped(Pawn Wearer)
+        public override void Notify_Unequipped(Pawn pawn)
         {
-            base.Notify_Unequipped(Wearer);
-            var hediff = Wearer.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.Scaria);
+            base.Notify_Unequipped(pawn);
+            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.Scaria);
             if (hediff != null)
             {
-                Wearer.health.RemoveHediff(hediff);
-                Wearer.MentalState.RecoverFromState();//should remove manhunter behavior
+                pawn.health.RemoveHediff(hediff);
+                pawn.MentalState?.RecoverFromState();//should remove manhunter behavior
             }
         }
     }

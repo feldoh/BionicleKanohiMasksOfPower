@@ -2,14 +2,14 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "Krafs.Publicizer/1.0.1": {
+      "Krafs.Publicizer/1.0.2": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
           "build/Krafs.Publicizer.targets": {}
         }
       },
-      "Krafs.Rimworld.Ref/1.3.3209-beta": {
+      "Krafs.Rimworld.Ref/1.3.3326-beta": {
         "type": "package",
         "compile": {
           "ref/net472/Assembly-CSharp-firstpass.dll": {},
@@ -89,10 +89,11 @@
           "ref/net472/UnityEngine.WindModule.dll": {},
           "ref/net472/UnityEngine.XRModule.dll": {},
           "ref/net472/UnityEngine.dll": {},
+          "ref/net472/com.rlabrecque.steamworks.net.dll": {},
           "ref/net472/mscorlib.dll": {}
         }
       },
-      "Lib.Harmony/2.1.1": {
+      "Lib.Harmony/2.2.1": {
         "type": "package",
         "compile": {
           "lib/net48/0Harmony.dll": {}
@@ -103,14 +104,14 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "Krafs.Publicizer/1.0.1": {
+      "Krafs.Publicizer/1.0.2": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
           "build/Krafs.Publicizer.targets": {}
         }
       },
-      "Krafs.Rimworld.Ref/1.3.3209-beta": {
+      "Krafs.Rimworld.Ref/1.3.3326-beta": {
         "type": "package",
         "compile": {
           "ref/net472/Assembly-CSharp-firstpass.dll": {},
@@ -190,10 +191,11 @@
           "ref/net472/UnityEngine.WindModule.dll": {},
           "ref/net472/UnityEngine.XRModule.dll": {},
           "ref/net472/UnityEngine.dll": {},
+          "ref/net472/com.rlabrecque.steamworks.net.dll": {},
           "ref/net472/mscorlib.dll": {}
         }
       },
-      "Lib.Harmony/2.1.1": {
+      "Lib.Harmony/2.2.1": {
         "type": "package",
         "compile": {
           "lib/net48/0Harmony.dll": {}
@@ -204,14 +206,14 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "Krafs.Publicizer/1.0.1": {
+      "Krafs.Publicizer/1.0.2": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
           "build/Krafs.Publicizer.targets": {}
         }
       },
-      "Krafs.Rimworld.Ref/1.3.3209-beta": {
+      "Krafs.Rimworld.Ref/1.3.3326-beta": {
         "type": "package",
         "compile": {
           "ref/net472/Assembly-CSharp-firstpass.dll": {},
@@ -291,10 +293,11 @@
           "ref/net472/UnityEngine.WindModule.dll": {},
           "ref/net472/UnityEngine.XRModule.dll": {},
           "ref/net472/UnityEngine.dll": {},
+          "ref/net472/com.rlabrecque.steamworks.net.dll": {},
           "ref/net472/mscorlib.dll": {}
         }
       },
-      "Lib.Harmony/2.1.1": {
+      "Lib.Harmony/2.2.1": {
         "type": "package",
         "compile": {
           "lib/net48/0Harmony.dll": {}
@@ -305,14 +308,14 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "Krafs.Publicizer/1.0.1": {
+      "Krafs.Publicizer/1.0.2": {
         "type": "package",
         "build": {
           "build/Krafs.Publicizer.props": {},
           "build/Krafs.Publicizer.targets": {}
         }
       },
-      "Krafs.Rimworld.Ref/1.3.3209-beta": {
+      "Krafs.Rimworld.Ref/1.3.3326-beta": {
         "type": "package",
         "compile": {
           "ref/net472/Assembly-CSharp-firstpass.dll": {},
@@ -392,10 +395,11 @@
           "ref/net472/UnityEngine.WindModule.dll": {},
           "ref/net472/UnityEngine.XRModule.dll": {},
           "ref/net472/UnityEngine.dll": {},
+          "ref/net472/com.rlabrecque.steamworks.net.dll": {},
           "ref/net472/mscorlib.dll": {}
         }
       },
-      "Lib.Harmony/2.1.1": {
+      "Lib.Harmony/2.2.1": {
         "type": "package",
         "compile": {
           "lib/net48/0Harmony.dll": {}
@@ -407,30 +411,30 @@
     }
   },
   "libraries": {
-    "Krafs.Publicizer/1.0.1": {
-      "sha512": "HJBbfHNKz/RrbpDgrpMfnmatIdBGHI5BLh1E77+GFRw1e/W6Cy2Uan9OwDawlYgX8N3dn1EoeabOylQLBNQ7/w==",
+    "Krafs.Publicizer/1.0.2": {
+      "sha512": "pR+YGF1FJ4fmz80OdmU7mK4BhDoDIBAzHutXH2SPt7Q9YG9aYPWnliUzfBxk4TnRD2jWdtQxjff8YmgChAMy2g==",
       "type": "package",
-      "path": "krafs.publicizer/1.0.1",
+      "path": "krafs.publicizer/1.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "build/Krafs.Publicizer.props",
         "build/Krafs.Publicizer.targets",
         "build/net472/Publicizer.dll",
-        "krafs.publicizer.1.0.1.nupkg.sha512",
+        "krafs.publicizer.1.0.2.nupkg.sha512",
         "krafs.publicizer.nuspec"
       ]
     },
-    "Krafs.Rimworld.Ref/1.3.3209-beta": {
-      "sha512": "fOiG9MfT8U1cRxkhPt8jYbSlx6WFh31Qn6qLZYxasw41JET5qwwP3crZx8ZdOKPU3M7UE21romEXvtL6Jr+DPw==",
+    "Krafs.Rimworld.Ref/1.3.3326-beta": {
+      "sha512": "1WO2K3hcfTXy5XG25iqGwOIxr8SRd3q1usQ7erj2Q1ZDB0mmFaHTwuVYDtwL2GfwuxvTyomSpUBr8lGPoLCUbA==",
       "type": "package",
-      "path": "krafs.rimworld.ref/1.3.3209-beta",
+      "path": "krafs.rimworld.ref/1.3.3326-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
         "icon.png",
-        "krafs.rimworld.ref.1.3.3209-beta.nupkg.sha512",
+        "krafs.rimworld.ref.1.3.3326-beta.nupkg.sha512",
         "krafs.rimworld.ref.nuspec",
         "ref/net472/Assembly-CSharp-firstpass.dll",
         "ref/net472/Assembly-CSharp.dll",
@@ -509,52 +513,60 @@
         "ref/net472/UnityEngine.WindModule.dll",
         "ref/net472/UnityEngine.XRModule.dll",
         "ref/net472/UnityEngine.dll",
+        "ref/net472/com.rlabrecque.steamworks.net.dll",
         "ref/net472/mscorlib.dll"
       ]
     },
-    "Lib.Harmony/2.1.1": {
-      "sha512": "CZiVcq01bVIjL2baWW5SVGZWyd6ew8adFp4BB2bzZfIGcWkTEto0G9sKu+9HDrEd75qBq3EHnZxx/gizi4NnqA==",
+    "Lib.Harmony/2.2.1": {
+      "sha512": "h0njONQcfHs5Yy8MjY7wFGh54YfwZzrU2uO81UZOCtz4mQtCMXT8GXbjmv5sZXMDTU4UtYRFxdS/7UXFTbcfRQ==",
       "type": "package",
-      "path": "lib.harmony/2.1.1",
+      "path": "lib.harmony/2.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "HarmonyLogo.png",
         "LICENSE",
-        "lib.harmony.2.1.1.nupkg.sha512",
+        "lib.harmony.2.2.1.nupkg.sha512",
         "lib.harmony.nuspec",
         "lib/net35/0Harmony.dll",
+        "lib/net35/0Harmony.xml",
         "lib/net45/0Harmony.dll",
+        "lib/net45/0Harmony.xml",
         "lib/net472/0Harmony.dll",
+        "lib/net472/0Harmony.xml",
         "lib/net48/0Harmony.dll",
+        "lib/net48/0Harmony.xml",
         "lib/net5.0/0Harmony.dll",
+        "lib/net5.0/0Harmony.xml",
         "lib/netcoreapp3.0/0Harmony.dll",
-        "lib/netcoreapp3.1/0Harmony.dll"
+        "lib/netcoreapp3.0/0Harmony.xml",
+        "lib/netcoreapp3.1/0Harmony.dll",
+        "lib/netcoreapp3.1/0Harmony.xml"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "Krafs.Publicizer >= 1.0.1",
-      "Krafs.Rimworld.Ref >= 1.3.3209-beta",
-      "Lib.Harmony >= 2.1.1"
+      "Krafs.Publicizer >= 1.0.2",
+      "Krafs.Rimworld.Ref >= 1.3.3326-beta",
+      "Lib.Harmony >= 2.2.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karasd3\\.nuget\\packages\\": {}
+    "C:\\Users\\Vova\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karasd3\\Documents\\GitHub\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\BionicleKanohiMasksOfPower.csproj",
+      "projectUniqueName": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\BionicleKanohiMasksOfPower.csproj",
       "projectName": "BionicleKanohiMasksOfPower",
-      "projectPath": "C:\\Users\\karasd3\\Documents\\GitHub\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\BionicleKanohiMasksOfPower.csproj",
-      "packagesPath": "C:\\Users\\karasd3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karasd3\\Documents\\GitHub\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\obj\\",
+      "projectPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\BionicleKanohiMasksOfPower.csproj",
+      "packagesPath": "C:\\Users\\Vova\\.nuget\\packages\\",
+      "outputPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\BionicleKanohiMasksOfPower\\1.3\\Source\\BionicleKanohiMasksOfPower\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\karasd3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vova\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -577,15 +589,15 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[1.0.1, )"
+            "version": "[1.0.2, )"
           },
           "Krafs.Rimworld.Ref": {
             "target": "Package",
-            "version": "[1.3.3209-beta, )"
+            "version": "[1.3.3326-beta, )"
           },
           "Lib.Harmony": {
             "target": "Package",
-            "version": "[2.1.1, )"
+            "version": "[2.2.1, )"
           }
         }
       }

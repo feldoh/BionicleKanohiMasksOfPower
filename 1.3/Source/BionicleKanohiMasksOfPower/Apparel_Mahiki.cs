@@ -11,39 +11,6 @@ using Verse.Noise;
 
 namespace BionicleKanohiMasksOfPower
 {
-	[StaticConstructorOnStartup]
-	public class Command_Mahiki : Command_Action
-	{
-		private static readonly Texture2D cooldownBarTex = SolidColorMaterials.NewSolidColorTexture(new Color32(9, 203, 4, 64));
-
-		private Apparel_Mahiki apparel;
-		public Command_Mahiki(Apparel_Mahiki apparel)
-		{
-			this.apparel = apparel;
-			order = 5f;
-		}
-
-        public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
-		{
-			Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
-			GizmoResult result = base.GizmoOnGUI(topLeft, maxWidth, parms);
-			//if (apparel.lastUsedTick > 0)
-			//{
-			//	var cooldownTicksRemaining = Find.TickManager.TicksGame - apparel.lastUsedTick;
-			//	if (cooldownTicksRemaining < Apparel_Mahiki.CooldownTicks)
-			//	{
-			//		float num = Mathf.InverseLerp(Apparel_Mahiki.CooldownTicks, 0, cooldownTicksRemaining);
-			//		Widgets.FillableBar(rect, Mathf.Clamp01(num), cooldownBarTex, null, doBorder: false);
-			//	}
-			//}
-			if (result.State == GizmoState.Interacted)
-			{
-				return result;
-			}
-			return new GizmoResult(result.State);
-        }
-	}
-
     public class Hediff_Duplicate : HediffWithComps//duplicate hediff deletes pawn after 10 seconds
     {
         public int initTick;
@@ -70,9 +37,7 @@ namespace BionicleKanohiMasksOfPower
     }
 	public class Apparel_Mahiki : Apparel
     {
-		//public int lastUsedTick;
 		public const float EffectiveRange = 15f;
-		public const int CooldownTicks = 0;//set to no cooldown
 		public static bool CanHitTargetFrom(Pawn caster, IntVec3 root, LocalTargetInfo targ)//check for line of sight
 		{
 			float num = EffectiveRange * EffectiveRange;
@@ -131,34 +96,45 @@ namespace BionicleKanohiMasksOfPower
             }
             if (Wearer.IsColonistPlayerControlled && this.IsMasterworkOrLegendary())
             {
-				yield return new Command_Mahiki(this)
+				yield return new Command_Action()
 				{
 					defaultLabel = "Bionicle.CreateClone".Translate(),
 					defaultDesc = "Bionicle.CreateCloneDesc".Translate(),
 					action = delegate
 					{
-						Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)
+                        Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo)
+                        {
+                            DuplicatePawnAt(localTargetInfo);
+                        }, highlightAction: (LocalTargetInfo x) =>
 						{
-                            var pawn = PawnUtility.GetPawnDuplicate(Wearer, Wearer.kindDef);//create new pawn duplicate
-                            var hediff = HediffMaker.MakeHediff(BionicleDefOf.BKMOP_PawnDuplicate, pawn);//create duplicate hediff
-                            pawn.health.AddHediff(hediff);//add hediff to duplicate
-                            GenSpawn.Spawn(pawn, localTargetInfo.Cell, Wearer.Map);//spawn duplicate on map
-                            LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_DefendPoint(localTargetInfo.Cell, addFleeToil: false), Wearer.Map, Gen.YieldSingle(pawn));//give ai of pawn
-							//lastUsedTick = Find.TickManager.TicksGame;
-						}, highlightAction: (LocalTargetInfo x) =>
-						{
-							GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
-							DrawHighlight(Wearer, x);
+                            GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
+                            DrawHighlight(Wearer, x);
 						}, null, Wearer);
 					},
 					onHover = delegate
 					{
-						GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
+                        GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
 					},
 					icon = this.def.uiIcon,
-					//disabled = lastUsedTick + Apparel_Mahiki.CooldownTicks > Find.TickManager.TicksGame
 				};
             }
+        }
+
+        private void DuplicatePawnAt(LocalTargetInfo localTargetInfo)
+        {
+            var pawn = PawnUtility.GetPawnDuplicate(Wearer, Wearer.kindDef);//create new pawn duplicate
+            var hediff = HediffMaker.MakeHediff(BionicleDefOf.BKMOP_PawnDuplicate, pawn);//create duplicate hediff
+            pawn.health.AddHediff(hediff);//add hediff to duplicate
+            GenSpawn.Spawn(pawn, localTargetInfo.Cell, Wearer.Map);//spawn duplicate on map
+            LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_DefendPoint(localTargetInfo.Cell, addFleeToil: false), Wearer.Map, Gen.YieldSingle(pawn));//give ai of pawn
+            Find.Targeter.BeginTargeting(TargetingParameters(Wearer), delegate (LocalTargetInfo localTargetInfo2)
+            {
+                DuplicatePawnAt(localTargetInfo2);
+            }, highlightAction: (LocalTargetInfo x) =>
+            {
+                GenDraw.DrawRadiusRing(Wearer.Position, EffectiveRange, Color.white, (IntVec3 c) => GenSight.LineOfSight(Wearer.Position, c, Wearer.Map) && ValidJumpTarget(Wearer.Map, c));
+                DrawHighlight(Wearer, x);
+            }, null, Wearer);
         }
 
         public override void ExposeData()
