@@ -592,7 +592,7 @@
   <ThingDef ParentName="BKMOP_ApparelBionicleMaskBase"><!--Komau-->
     <defName>BKMOP_Komau</defName>
     <label>Komau</label>
-    <description>Mask of Mind Control. Masterwork and legendary masks are able to down pawns and change their mental state.</description>
+    <description>Mask of Mind Control. Masterwork and legendary masks are able to tame animals, down pawns, and change their mental state.</description>
 	<thingClass>BionicleKanohiMasksOfPower.Apparel_Komau</thingClass>
 	<graphicData>
 		<texPath>Things/Pawn/Humanlike/Apparel/Komau/Komau</texPath>
