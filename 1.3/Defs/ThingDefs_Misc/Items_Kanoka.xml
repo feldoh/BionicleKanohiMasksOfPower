@@ -19,7 +19,6 @@
 	<thingCategories>
       <li>Items</li>
     </thingCategories>
-    <tradeability>Sellable</tradeability>
     <statBases>
 	  <MarketValue>1000</MarketValue>
       <Mass>0.5</Mass>
@@ -32,13 +31,22 @@
     </tradeTags>
 	<thingSetMakerTags>
       <li>RewardStandardHighFreq</li>
+	  <li>RewardStandardQualitySuper</li>
     </thingSetMakerTags>
 	<comps>
       <li>
         <compClass>CompQuality</compClass>
       </li>
 	  <li Class="CompProperties_Styleable"></li>
+	  <li Class="CompProperties_Art">
+		<nameMaker>NamerArtWeapon</nameMaker>
+		<descriptionMaker>ArtDescription_Disk</descriptionMaker>
+		<minQualityForArtistic>Masterwork</minQualityForArtistic>
+	  </li>
     </comps>
+	<inspectorTabs>
+	  <li>ITab_Art</li>
+	</inspectorTabs>
   </ThingDef>
   
   

@@ -5,7 +5,7 @@
     <techLevel>Spacer</techLevel>
     <graphicData>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(0.9, 0.9)</drawSize>
+      <drawSize>(1, 1)</drawSize>
     </graphicData>
     <tradeTags>
       <li>HiTechArmor</li>
@@ -17,8 +17,8 @@
       <Mass>0.5</Mass>
       <Flammability>0.4</Flammability>
       <ArmorRating_Sharp>1.2</ArmorRating_Sharp>
-      <ArmorRating_Blunt>0.5</ArmorRating_Blunt>
-      <ArmorRating_Heat>0.6</ArmorRating_Heat>
+      <ArmorRating_Blunt>1</ArmorRating_Blunt>
+      <ArmorRating_Heat>1</ArmorRating_Heat>
       <Insulation_Cold>4</Insulation_Cold>
       <Insulation_Heat>2</Insulation_Heat>
       <EquipDelay>2</EquipDelay>
@@ -51,9 +51,18 @@
 	  <li Class="BionicleKanohiMasksOfPower.CompProperties_Swappable">
 		<swapGroupKey>BionicleMask</swapGroupKey>
 	  </li>
+	  <li Class="CompProperties_Art">
+		<nameMaker>NamerArtWeapon</nameMaker>
+		<descriptionMaker>ArtDescription_Mask</descriptionMaker>
+		<minQualityForArtistic>Masterwork</minQualityForArtistic>
+	  </li>
     </comps>
+	<inspectorTabs>
+	  <li>ITab_Art</li>
+	</inspectorTabs>
     <thingSetMakerTags>
       <li>RewardStandardMidFreq</li>
+	  <li>RewardStandardQualitySuper</li>
     </thingSetMakerTags>
   </ThingDef>
   
