@@ -23,7 +23,7 @@ namespace BionicleKanohiMasksOfPower
 		public Command_Disarm(Apparel_Matatu apparel)
 		{
 			this.apparel = apparel;
-			order = 5f;
+			order = 6f;
 		}
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)
